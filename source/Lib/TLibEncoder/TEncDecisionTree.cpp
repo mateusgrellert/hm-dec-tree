@@ -8,6 +8,8 @@
 #include "../C50/global.c"
 #include "../C50/hooks.c"
 #endif
+
+#include<algorithm>
 double TEncDecisionTree::cost_2Nx2N;
 double TEncDecisionTree::cost_MSM;
 double TEncDecisionTree::neighDepth;
@@ -15,19 +17,36 @@ int TEncDecisionTree::nonZeroCoeff;
 int TEncDecisionTree::deltaQP;
 int TEncDecisionTree::encodedFrames;
 bool TEncDecisionTree::enabled;
+bool TEncDecisionTree::trained;
+bool TEncDecisionTree::encodeStarted;
 double TEncDecisionTree::SAD;
 double TEncDecisionTree::SSE;
 string TEncDecisionTree::dataRec;
+FILE* TEncDecisionTree::trainFile[3];
+FILE* TEncDecisionTree::testFile[3];
 
+std::map<std::string, std::string > TEncDecisionTree::statsMap; 
+std::vector<std::string > TEncDecisionTree::cuOrderMap; 
 
 void TEncDecisionTree::init(){
-    int d;
-        dataRec = string();
-        for (d = 0 ; d <= 2; d++){
-            gDepth = d;
-            readTree();
-        }
 
+    dataRec = string();
+#if !ONLINE_TRAIN
+    for (d = 0 ; d <= 2; d++){
+        gDepth = d;
+        readTree();
+    }
+#endif
+    trained = false;
+    encodeStarted = false;
+    testFile[0] = fopen("test_vectors_d0.data","w");
+    testFile[1] = fopen("test_vectors_d1.data","w");
+    testFile[2] = fopen("test_vectors_d2.data","w");
+#if ONLINE_TRAIN
+    trainFile[0] = fopen("train_d0.data","w");
+    trainFile[1] = fopen("train_d1.data","w");
+    trainFile[2] = fopen("train_d2.data","w");
+#endif
 }
 
 void TEncDecisionTree::getSADSSE( TComYuv *pcYuvSrc0, TComYuv *pcYuvSrc1,int width){
@@ -317,7 +336,18 @@ double TEncDecisionTree::getFeatureValue(TComDataCU *&cu, int feat_idx){
 void TEncDecisionTree::readTree(){
     FILE		*F;
     int			 TotalRules=0;
-    /*  Read information on attribute names, values, and classes  */
+   /*  Read information on attribute names, values, and classes  */
+#if ONLINE_TRAIN
+    if(gDepth == 0){
+        FileStem = "train_d0";
+    }
+    else if (gDepth == 1){
+        FileStem = "train_d1";
+    }
+    else{
+        FileStem = "train_d2";
+    }
+#else
     if(gDepth == 0){
         FileStem = "TRA_NEB_BDrv_PkS_PtS_BQM_BBub_RH_d0";
     }
@@ -327,6 +357,7 @@ void TEncDecisionTree::readTree(){
     else{
         FileStem = "TRA_NEB_BDrv_PkS_PtS_BQM_BBub_RH_d2";
     }
+#endif
     if ( ! (F = GetFile(".names", "r")) ) Error(NOFILE, Fn, "");
 
     GetNames(F);
@@ -345,9 +376,9 @@ void TEncDecisionTree::readTree(){
     if ( RULES )
     {
 	CheckFile(".rules", false);
-	RuleSet = AllocZero(TRIALS+1, CRuleSet);
+	RuleSet = AllocZero(TRIALS[gDepth]+1, CRuleSet);
 
-	ForEach(Trial, 0, TRIALS-1)
+	ForEach(Trial, 0, TRIALS[gDepth]-1)
 	{
 	    RuleSet[Trial] = GetRules(".rules");
 	    TotalRules += RuleSet[Trial]->SNRules;
@@ -355,7 +386,7 @@ void TEncDecisionTree::readTree(){
 
 	if ( RULESUSED )
 	{
-	    GCEnv[gDepth]->RulesUsed = Alloc(TotalRules + TRIALS, RuleNo);
+	    GCEnv[gDepth]->RulesUsed = Alloc(TotalRules + TRIALS[gDepth], RuleNo);
 	}
 
 	GCEnv[gDepth]->MostSpec   = Alloc(MaxClass+1, CRule);
@@ -363,9 +394,9 @@ void TEncDecisionTree::readTree(){
     else
     {
 	CheckFile(".tree", false);
-	Pruned[gDepth] = AllocZero(TRIALS+1, Tree);
+	Pruned[gDepth] = AllocZero(TRIALS[gDepth]+1, Tree);
 
-	ForEach(Trial, 0, TRIALS-1)
+	ForEach(Trial, 0, TRIALS[gDepth]-1)
 	{
 	    Pruned[gDepth][Trial] = GetTree(".tree");
 	}
@@ -403,7 +434,7 @@ int TEncDecisionTree::classifyCU(string dataRec, int depth){
         /*  Free the memory used by this case  */
 	FreeLastCase(Case);
     }
-    if(GCEnv[depth]->Confidence < 0.95)
+    if(GCEnv[depth]->Confidence < 0.9)
         return 1;
 
     /*  Close the case file and free allocated memory  */
@@ -417,10 +448,12 @@ string TEncDecisionTree::setCUFeatures(TComDataCU *&cu){
     double val;
     int valInt;
    // printf("Mode %d PU %d TrD %d\n", mode, puSize, trDepth);
-    int numFeatures = 28;
     int i;
     stringstream sstr;
     
+    std::string cu_str = TEncDecisionTree::getMapString(cu, cu->getDepth(0), 0);
+    cuOrderMap.push_back(cu_str);
+
     val = getFeatureValue(cu, 1);
     valInt = (int) val;
     if ( (val - valInt) == 0.0 ) 
@@ -428,7 +461,7 @@ string TEncDecisionTree::setCUFeatures(TComDataCU *&cu){
     else
         sstr << val;   
     
-    for(i = 2; i <= numFeatures; i++){
+    for(i = 2; i <= NB_FEATURES; i++){
 
         val = getFeatureValue(cu, i); // use +3 to discard features that were not considered in the models
         valInt = (int) val;
@@ -438,8 +471,13 @@ string TEncDecisionTree::setCUFeatures(TComDataCU *&cu){
             sstr << "," << val;
 
     }
-    sstr << ",?\n";
-    //printf("%s\n", sstr.str().c_str() );
+    if(predictPhase() && WRITE_TEST){
+        sstr << ",?\n";
+        fprintf(testFile[cu->getDepth(0)], "%s\n", sstr.str().c_str() );
+    }
+    else if (trainingPhase()){
+        statsMap[cu_str] = sstr.str();
+    }
     return sstr.str();
 }
 
@@ -448,8 +486,93 @@ string TEncDecisionTree::setCUFeatures(TComDataCU *&cu){
 bool TEncDecisionTree::decideSplit(TComDataCU *&cu, int depth){
     gDepth = depth;
     dataRec = setCUFeatures(cu);
+    
     return classifyCU(dataRec, depth);
 
+}
+
+
+
+std::string TEncDecisionTree::getMapString(TComDataCU *cu, int depth, int partIdx){
+    std::stringstream sstr;
+    
+    int cu_x = cu->getCUPelX() + g_auiRasterToPelX[ g_auiZscanToRaster[partIdx] ];
+    int cu_y = cu->getCUPelY() + g_auiRasterToPelY[ g_auiZscanToRaster[partIdx] ];
+
+    //int cu_x = pcCU->getCUPelX() ;
+    //int cu_y = pcCU->getCUPelY() ;
+    sstr << cu->getPic()->getPOC() << "_" << cu_x << "x" << cu_y << "_" << depth;
+    
+    return sstr.str();
+}
+
+
+bool TEncDecisionTree::trainingPhase(){
+    if(ONLINE_TRAIN){
+        return (encodedFrames >= 4) && (encodedFrames <= (4 + NB_TRAINING_FRAMES));
+        
+    }
+    else{
+        return 0;
+    }
+}
+
+bool TEncDecisionTree::predictPhase(){
+    bool enable = false;
+    if(ONLINE_TRAIN){
+        
+        enable = (encodedFrames > (4 + NB_TRAINING_FRAMES));
+        if (enable && !trained){
+            runC50Train();
+            trained = true;
+        }
+    }
+    else{
+        enable = encodedFrames >= 4;
+    }
+    return enable;
+}
+
+void TEncDecisionTree::writeTrainFile(){
+    //std::map<std::string, std::vector<double> >::iterator it_i;
+    //std::vector<double>::iterator it_j;
+    
+    int i,depth,n_commas;
+    for(i = 0; i < cuOrderMap.size(); i++){
+        const std::string &s = cuOrderMap[i];
+        n_commas = std::count(statsMap[s].begin(), statsMap[s].end(), ',');
+        if (n_commas < NB_FEATURES) // skipping CUs below the ones that were not split
+            continue;
+        depth = s[s.length()-1] - '0';
+        
+        fprintf(trainFile[depth],"%s\n",statsMap[s].c_str());
+        
+    }
+}
+
+void TEncDecisionTree::runC50Train(){
+    fclose(trainFile[0]);
+    fclose(trainFile[1]);
+    fclose(trainFile[2]);
+    
+    if(system("./c5.0 -b -f train_d0 -o online_d0_boost.out") == -1){
+        printf("Error training C5.0!\n");
+        exit(1);
+    }
+    if(system("./c5.0 -b -f train_d1 -o online_d1_boost.out") == -1){
+        printf("Error training C5.0!\n");
+        exit(1);
+    }
+    if(system("./c5.0 -b -f train_d2 -o online_d2_boost.out") == -1){
+        printf("Error training C5.0!\n");
+        exit(1);
+    }    
+    
+    int d;
+    for (d = 0 ; d <= 2; d++){
+        gDepth = d;
+        readTree();
+    }
 }
 
 /*

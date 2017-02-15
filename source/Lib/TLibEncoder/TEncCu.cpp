@@ -232,13 +232,17 @@ Void TEncCu::compressCtu( TComDataCU* pCtu )
   // initialize CU data
   m_ppcBestCU[0]->initCtu( pCtu->getPic(), pCtu->getCtuRsAddr() );
   m_ppcTempCU[0]->initCtu( pCtu->getPic(), pCtu->getCtuRsAddr() );
-
+#if ONLINE_TRAIN
+  TEncDecisionTree::statsMap.clear();
+  TEncDecisionTree::cuOrderMap.clear();
+#endif
   // analysis of CU
   DEBUG_STRING_NEW(sDebug)
     TEncDecisionTree::neighDepth = TEncDecisionTree::getAverageNeighborDepth(m_ppcBestCU[0]);
   xCompressCU( m_ppcBestCU[0], m_ppcTempCU[0], 0 DEBUG_STRING_PASS_INTO(sDebug) );
   DEBUG_STRING_OUTPUT(std::cout, sDebug)
 
+          
 #if ADAPTIVE_QP_SELECTION
   if( m_pcEncCfg->getUseAdaptQpSelect() )
   {
@@ -265,6 +269,14 @@ Void TEncCu::encodeCtu ( TComDataCU* pCtu )
 
   // Encode CU data
   xEncodeCU( pCtu, 0, 0 );
+  
+  
+  
+#if ONLINE_TRAIN
+  if(TEncDecisionTree::trainingPhase() && TEncDecisionTree::encodeStarted && !pCtu->getSlice()->isIntra()){
+    TEncDecisionTree::writeTrainFile();
+  }
+#endif
 }
 
 // ====================================================================================================================
@@ -723,13 +735,24 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const 
   }
 
   Bool splitCU = 1;
-  if(TEncDecisionTree::enabled && rpcBestCU->getTotalCost()!=MAX_DOUBLE && uiDepth != 3 && !pcSlice->isIntra() && TEncDecisionTree::encodedFrames >= 4){
+  
+  if(TEncDecisionTree::enabled && rpcBestCU->getTotalCost()!=MAX_DOUBLE && uiDepth != 3 && !pcSlice->isIntra() && TEncDecisionTree::trainingPhase()){
+      
+      TEncDecisionTree::getSADSSE((m_ppcOrigYuv[uiDepth]), (m_ppcPredYuvTemp[uiDepth]),(int) rpcBestCU->getWidth(0));
+      TEncDecisionTree::deltaQP = rpcBestCU->getSlice()->getSliceQp() - m_pcEncCfg->getQP();
+      
+      std::string dump = TEncDecisionTree::setCUFeatures(rpcBestCU);
+  }
+  if(TEncDecisionTree::enabled && rpcBestCU->getTotalCost()!=MAX_DOUBLE && uiDepth != 3 && !pcSlice->isIntra() && TEncDecisionTree::predictPhase()){
 
       TEncDecisionTree::getSADSSE((m_ppcOrigYuv[uiDepth]), (m_ppcPredYuvTemp[uiDepth]),(int) rpcBestCU->getWidth(0));
-        TEncDecisionTree::deltaQP = rpcBestCU->getSlice()->getSliceQp() - m_pcEncCfg->getQP();
+      TEncDecisionTree::deltaQP = rpcBestCU->getSlice()->getSliceQp() - m_pcEncCfg->getQP();
 
       splitCU = TEncDecisionTree::decideSplit(rpcBestCU, uiDepth);
   }
+  
+  
+  
   //const Bool bSubBranch = bBoundary || !( m_pcEncCfg->getUseEarlyCU() && rpcBestCU->getTotalCost()!=MAX_DOUBLE && rpcBestCU->isSkipped(0) );
   const Bool bSubBranch = bBoundary || splitCU;
 
@@ -965,6 +988,15 @@ Void TEncCu::xEncodeCU( TComDataCU* pcCU, UInt uiAbsPartIdx, UInt uiDepth )
 
   if( ( ( uiDepth < pcCU->getDepth( uiAbsPartIdx ) ) && ( uiDepth < sps.getLog2DiffMaxMinCodingBlockSize() ) ) || bBoundary )
   {
+    
+#if ONLINE_TRAIN
+    if(TEncDecisionTree::trainingPhase() && TEncDecisionTree::encodeStarted){
+
+        std::string cu_str = TEncDecisionTree::getMapString(pcCU, uiDepth, uiAbsPartIdx);
+        TEncDecisionTree::statsMap[cu_str] += ",1";
+    }
+#endif
+      
     UInt uiQNumParts = ( pcPic->getNumPartitionsInCtu() >> (uiDepth<<1) )>>2;
     if( uiDepth == pps.getMaxCuDQPDepth() && pps.getUseDQP())
     {
@@ -987,7 +1019,12 @@ Void TEncCu::xEncodeCU( TComDataCU* pcCU, UInt uiAbsPartIdx, UInt uiDepth )
     }
     return;
   }
-
+#if ONLINE_TRAIN
+  if(TEncDecisionTree::trainingPhase() && TEncDecisionTree::encodeStarted){
+    std::string cu_str = TEncDecisionTree::getMapString(pcCU, uiDepth, uiAbsPartIdx);
+    TEncDecisionTree::statsMap[cu_str] += ",0";
+  }
+#endif
   if( uiDepth <= pps.getMaxCuDQPDepth() && pps.getUseDQP())
   {
     setdQPFlag(true);

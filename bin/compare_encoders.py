@@ -20,7 +20,7 @@ def runEncoder(cmd, encoder1,encoder2):
 	else:
 		encoder = encoder2
 	
-	#print 'Running: ', cmd
+	print 'Running: ', cmd
 
 	cfg = 'RA' if 'randomaccess' in cmd else 'LB'
 	seq = seqMap[cmd.split('~/hm-cfgs/')[1].split()[0][:-4]]

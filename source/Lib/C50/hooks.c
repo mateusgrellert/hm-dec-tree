@@ -602,9 +602,10 @@ int InChar(FILE *f)
 bool getSubStr(string src, char *dest){
     int i;
     dest[0] = '\0';
+    if(StrP >= src.length()) return 0;
     for(i = 0; src[StrP] != ','; StrP++,i++){
         if (src[StrP] == '\n') break;
-        dest[i] = src[StrP];
+        dest[i] = (char) src[StrP];
     
     }
     if (i == 0) return 0;
@@ -2124,7 +2125,7 @@ void ReadHeader()
 		break;
 
 	    case ENTRIESP:
-		sscanf(PropVal, "\"%d\"", &TRIALS);
+		sscanf(PropVal, "\"%d\"", &TRIALS[gDepth]);
 		Entry = 0;
 		return;
 	}
@@ -3501,7 +3502,7 @@ ClassNo Classify(DataRec Case, CEnv E)
 {
     E->NRulesUsed = 0;
 
-    return ( TRIALS > 1 ? BoostClassify(Case, TRIALS-1, E) :
+    return ( TRIALS[gDepth] > 1 ? BoostClassify(Case, TRIALS[gDepth]-1, E) :
 	     RULES ?	  RuleClassify(Case, RuleSet[0], E) :
 			  TreeClassify(Case, Pruned[gDepth][0], E) );
 }
@@ -4082,7 +4083,7 @@ void FreeGlobals()
 
     if ( RULES )
     {
-	ForEach(Trial, 0, TRIALS-1)
+	ForEach(Trial, 0, TRIALS[gDepth]-1)
 	{
 	     FreeRules(RuleSet[Trial]);
 	}
@@ -4094,7 +4095,7 @@ void FreeGlobals()
     }
     else
     {
-	ForEach(Trial, 0, TRIALS-1)
+	ForEach(Trial, 0, TRIALS[gDepth]-1)
 	{
 	     FreeTree(Pruned[0][Trial]);
 	}

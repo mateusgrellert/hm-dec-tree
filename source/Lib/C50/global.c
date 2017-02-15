@@ -16,7 +16,7 @@
 /*									 */
 /*************************************************************************/
 int StrP = 0;
-int		TRIALS=1,	/* number of trees to be grown */
+int		TRIALS[3]={1,1,1},	/* number of trees to be grown */
 		Trial;		/* trial number for boosting */
 
 Boolean		RULES=0,	/* rule-based classifiers */

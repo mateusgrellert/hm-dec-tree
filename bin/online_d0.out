@@ -1,0 +1,57 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Wed Feb 15 14:38:24 2017
+-------------------------------
+
+    Options:
+	Application `train_d0'
+
+Read 455 cases (28 attributes) from train_d0.data
+
+Decision tree:
+
+BITS > 74:
+:...AVG_NEIGH_DEPTH > 0.923775: 1 (245/4)
+:   AVG_NEIGH_DEPTH <= 0.923775:
+:   :...SAD <= 12384: 1 (11/2)
+:       SAD > 12384: 0 (2)
+BITS <= 74:
+:...RATIO_BEST-MSM <= 0.939793:
+    :...COLOC_SPLIT = 0: 1 (0)
+    :   COLOC_SPLIT = 1: 0 (3)
+    :   COLOC_SPLIT = 2: 1 (26/5)
+    RATIO_BEST-MSM > 0.939793:
+    :...dQP = 2: 0 (0)
+        dQP = 1: 1 (1)
+        dQP = 4: 0 (135/6)
+        dQP = 3:
+        :...DISTORTION <= 24112: 0 (26/6)
+            DISTORTION > 24112: 1 (6)
+
+
+Evaluation on training data (455 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	     9   23( 5.1%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   154    11    (a): class 0
+	    12   278    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	     57%  AVG_NEIGH_DEPTH
+	     43%  RATIO_BEST-MSM
+	     37%  dQP
+	      7%  DISTORTION
+	      6%  COLOC_SPLIT
+	      3%  SAD
+
+
+Time: 0.0 secs

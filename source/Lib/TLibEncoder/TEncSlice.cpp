@@ -37,6 +37,7 @@
 
 #include "TEncTop.h"
 #include "TEncSlice.h"
+#include "TEncDecisionTree.h"
 #include <math.h>
 
 //! \ingroup TLibEncoder
@@ -802,9 +803,15 @@ Void TEncSlice::compressSlice( TComPic* pcPic, const Bool bCompressEntireSlice, 
     m_pppcRDSbacCoder[0][CI_CURR_BEST]->resetBits();
     pRDSbacCoder->setBinsCoded( 0 );
 
+    
+#if ONLINE_TRAIN
+    TEncDecisionTree::encodeStarted = 1;
+#endif
     // encode CTU and calculate the true bit counters.
     m_pcCuEncoder->encodeCtu( pCtu );
-
+#if ONLINE_TRAIN
+    TEncDecisionTree::encodeStarted = 0;
+#endif
 
     pRDSbacCoder->setBinCountingEnableFlag( false );
 
