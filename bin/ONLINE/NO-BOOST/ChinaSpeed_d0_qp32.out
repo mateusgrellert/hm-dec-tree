@@ -1,0 +1,141 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 09:33:00 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/ChinaSpeed_d0_qp32'
+
+Read 960 cases (28 attributes) from ./ONLINE/NO-BOOST/ChinaSpeed_d0_qp32.data
+
+Decision tree:
+
+BITS <= 10:
+:...AVG_NEIGH_DEPTH <= 0.495994: 0 (187/3)
+:   AVG_NEIGH_DEPTH > 0.495994:
+:   :...COST_2Nx2N > 222654: 1 (8/1)
+:       COST_2Nx2N <= 222654:
+:       :...BITS <= 3: 0 (81/10)
+:           BITS > 3:
+:           :...NON-Z-COEFF > 17: 1 (4)
+:               NON-Z-COEFF <= 17:
+:               :...CTX_SPLIT = 0: 0 (0)
+:                   CTX_SPLIT in {1,2,3}: 0 (24/2)
+:                   CTX_SPLIT = 4:
+:                   :...RATIO_BEST-MSM <= 1.01377: 1 (8/2)
+:                   :   RATIO_BEST-MSM > 1.01377: 0 (3)
+:                   CTX_SPLIT = 5:
+:                   :...SSE <= 73746: 0 (4)
+:                   :   SSE > 73746: 1 (2)
+:                   CTX_SPLIT = 6:
+:                   :...MV_MOD_INT <= 1.41421: 1 (6/1)
+:                       MV_MOD_INT > 1.41421: 0 (2)
+BITS > 10:
+:...AVG_NEIGH_DEPTH <= 0.935897:
+    :...RATIO_BEST_2Nx2N <= 0.773023:
+    :   :...REF_IDX = -1: 0 (35/1)
+    :   :   REF_IDX = 1: 1 (1)
+    :   :   REF_IDX = 0:
+    :   :   :...AVG_NEIGH_DEPTH <= 0.709677: 0 (5)
+    :   :       AVG_NEIGH_DEPTH > 0.709677: 1 (5)
+    :   RATIO_BEST_2Nx2N > 0.773023:
+    :   :...PU_SIZE in {6,7}: 1 (7/2)
+    :       PU_SIZE = 1:
+    :       :...AVG_NEIGH_DEPTH <= 0.40625: 0 (7/2)
+    :       :   AVG_NEIGH_DEPTH > 0.40625: 1 (20/3)
+    :       PU_SIZE = 2:
+    :       :...COLOC_SPLIT in {0,2}: 1 (11/2)
+    :       :   COLOC_SPLIT = 1: 0 (9/3)
+    :       PU_SIZE = 4:
+    :       :...RATIO_BEST_2Nx2N <= 0.979248: 0 (5)
+    :       :   RATIO_BEST_2Nx2N > 0.979248: 1 (2)
+    :       PU_SIZE = 5:
+    :       :...RATIO_BEST-MSM <= 0.92523: 1 (2)
+    :       :   RATIO_BEST-MSM > 0.92523: 0 (3)
+    :       PU_SIZE = 0:
+    :       :...INTER_DIR = 1: 0 (11/1)
+    :           INTER_DIR = 2: 1 (8/1)
+    :           INTER_DIR = 3:
+    :           :...RATIO_BEST-MSM <= 1.00386: 0 (33/11)
+    :           :   RATIO_BEST-MSM > 1.00386: 1 (5)
+    :           INTER_DIR = 0:
+    :           :...CTX_SPLIT = 6: 1 (0)
+    :               CTX_SPLIT in {0,3}: 0 (2)
+    :               CTX_SPLIT = 5: 1 (2)
+    :               CTX_SPLIT = 1:
+    :               :...SSE <= 172822: 0 (3)
+    :               :   SSE > 172822: 1 (2)
+    :               CTX_SPLIT = 4:
+    :               :...BITS <= 113: 0 (2)
+    :               :   BITS > 113: 1 (2)
+    :               CTX_SPLIT = 2:
+    :               :...COLOC_SPLIT = 2: 1 (0)
+    :                   COLOC_SPLIT = 0: 1 (3)
+    :                   COLOC_SPLIT = 1:
+    :                   :...BITS <= 70: 1 (2)
+    :                       BITS > 70: 0 (2)
+    AVG_NEIGH_DEPTH > 0.935897:
+    :...COST_2Nx2N > 205434: 1 (264/5)
+        COST_2Nx2N <= 205434:
+        :...BITS > 210: 1 (34)
+            BITS <= 210:
+            :...PU_SIZE in {1,2,4,5}: 1 (61/6)
+                PU_SIZE = 6: 0 (3)
+                PU_SIZE = 7:
+                :...COST_2Nx2N <= 97933.5: 1 (3)
+                :   COST_2Nx2N > 97933.5: 0 (4)
+                PU_SIZE = 0:
+                :...PRED_MODE = 0: 1 (1)
+                    PRED_MODE = 1: 0 (9/3)
+                    PRED_MODE = 2:
+                    :...NON-Z-COEFF > 13: 0 (3)
+                    :   NON-Z-COEFF <= 13:
+                    :   :...BITS <= 36: 0 (5/1)
+                    :       BITS > 36:
+                    :       :...RATIO_BEST_2Nx2N <= 0.739618: 0 (3)
+                    :           RATIO_BEST_2Nx2N > 0.739618: 1 (30/4)
+                    PRED_MODE = 3:
+                    :...dQP = 2: 0 (0)
+                        dQP = 3: 1 (3)
+                        dQP = 4: 0 (1)
+                        dQP = 1:
+                        :...NON-Z-COEFF <= 1: 1 (5)
+                            NON-Z-COEFF > 1:
+                            :...BEST_COST <= 39945.2: 0 (10)
+                                BEST_COST > 39945.2: 1 (3)
+
+
+Evaluation on training data (960 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    54   64( 6.7%)   0.07   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   419    27    (a): class 0
+	    37   477    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	    100%  AVG_NEIGH_DEPTH
+	     61%  COST_2Nx2N
+	     30%  PU_SIZE
+	     23%  RATIO_BEST_2Nx2N
+	     12%  NON-Z-COEFF
+	      8%  INTER_DIR
+	      8%  PRED_MODE
+	      7%  CTX_SPLIT
+	      6%  RATIO_BEST-MSM
+	      5%  REF_IDX
+	      3%  COLOC_SPLIT
+	      2%  dQP
+	      1%  BEST_COST
+	      1%  SSE
+
+
+Time: 0.0 secs

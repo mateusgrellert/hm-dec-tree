@@ -1,0 +1,57 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 11:14:33 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/BasketballDrill_d0_qp32'
+
+Read 455 cases (28 attributes) from ./ONLINE/NO-BOOST/BasketballDrill_d0_qp32.data
+
+Decision tree:
+
+BITS <= 23:
+:...COST_2Nx2N <= 205329: 0 (224/11)
+:   COST_2Nx2N > 205329:
+:   :...FME = 1: 0 (1)
+:       FME = 2: 1 (9/1)
+:       FME = 0:
+:       :...RATIO_BEST_2Nx2N <= 0.925: 1 (4)
+:           RATIO_BEST_2Nx2N > 0.925: 0 (4)
+BITS > 23:
+:...BEST_COST > 89659.6: 1 (177/8)
+    BEST_COST <= 89659.6:
+    :...PU_SIZE in {5,6}: 0 (0)
+        PU_SIZE in {0,4}: 0 (25/5)
+        PU_SIZE in {2,7}: 1 (6/1)
+        PU_SIZE = 1:
+        :...SAD <= 13182: 1 (3)
+            SAD > 13182: 0 (2)
+
+
+Evaluation on training data (455 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    10   26( 5.7%)   0.06   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   240    10    (a): class 0
+	    16   189    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	     53%  COST_2Nx2N
+	     47%  BEST_COST
+	      8%  PU_SIZE
+	      4%  FME
+	      2%  RATIO_BEST_2Nx2N
+	      1%  SAD
+
+
+Time: 0.0 secs

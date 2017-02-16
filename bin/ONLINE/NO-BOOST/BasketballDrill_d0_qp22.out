@@ -1,0 +1,67 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 11:14:56 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/BasketballDrill_d0_qp22'
+
+Read 455 cases (28 attributes) from ./ONLINE/NO-BOOST/BasketballDrill_d0_qp22.data
+
+Decision tree:
+
+BITS > 73:
+:...AVG_NEIGH_DEPTH > 1: 1 (241/7)
+:   AVG_NEIGH_DEPTH <= 1:
+:   :...RATIO_BEST-MSM <= 1.00085: 1 (14/3)
+:       RATIO_BEST-MSM > 1.00085: 0 (4)
+BITS <= 73:
+:...RATIO_BEST-MSM > 0.969499:
+    :...dQP = 2: 0 (0)
+    :   dQP = 1: 1 (1)
+    :   dQP = 4: 0 (125/6)
+    :   dQP = 3:
+    :   :...COST_2Nx2N <= 23754.6: 0 (20/1)
+    :       COST_2Nx2N > 23754.6:
+    :       :...PU_SIZE in {2,4,5,6,7}: 1 (0)
+    :           PU_SIZE = 0: 1 (7/1)
+    :           PU_SIZE = 1: 0 (2)
+    RATIO_BEST-MSM <= 0.969499:
+    :...COLOC_SPLIT in {0,1}: 0 (9/1)
+        COLOC_SPLIT = 2:
+        :...dQP in {1,2}: 1 (0)
+            dQP = 3: 1 (8)
+            dQP = 4:
+            :...NON-Z-COEFF > 18: 0 (3)
+                NON-Z-COEFF <= 18:
+                :...AVG_NEIGH_DEPTH <= 0.697368: 0 (3)
+                    AVG_NEIGH_DEPTH > 0.697368: 1 (18/4)
+
+
+Evaluation on training data (455 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    13   23( 5.1%)   0.05   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   158    15    (a): class 0
+	     8   274    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	     62%  AVG_NEIGH_DEPTH
+	     47%  RATIO_BEST-MSM
+	     41%  dQP
+	      9%  COLOC_SPLIT
+	      6%  COST_2Nx2N
+	      5%  NON-Z-COEFF
+	      2%  PU_SIZE
+
+
+Time: 0.0 secs

@@ -1,0 +1,136 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 11:14:33 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/BasketballDrill_d2_qp32'
+
+Read 1264 cases (28 attributes) from ./ONLINE/NO-BOOST/BasketballDrill_d2_qp32.data
+
+Decision tree:
+
+BITS > 62:
+:...DISTORTION <= 6211: 0 (25/8)
+:   DISTORTION > 6211:
+:   :...dQP = 2: 1 (0)
+:       dQP = 4: 1 (4/1)
+:       dQP = 1:
+:       :...COST_2Nx2N > 22434.4: 1 (84/1)
+:       :   COST_2Nx2N <= 22434.4:
+:       :   :...SSE <= 951435: 1 (86/14)
+:       :       SSE > 951435: 0 (3)
+:       dQP = 3:
+:       :...NON-Z-COEFF > 14: 0 (4)
+:           NON-Z-COEFF <= 14:
+:           :...MV_MOD_INT <= 5.83095: 1 (13/1)
+:               MV_MOD_INT > 5.83095:
+:               :...TU_DEPTH in {0,2}: 0 (4)
+:                   TU_DEPTH = 1: 1 (3)
+BITS <= 62:
+:...TU_DEPTH = 2:
+    :...DISTORTION <= 6700: 1 (2)
+    :   DISTORTION > 6700: 0 (3)
+    TU_DEPTH = 1:
+    :...DISTORTION > 16412: 1 (10)
+    :   DISTORTION <= 16412:
+    :   :...PREDMV_MOD_FRAC in {0.25,0.75,0.790569,0.901388,
+    :       :                   1.06066}: 0 (0)
+    :       PREDMV_MOD_FRAC in {0.353553,0.559017,0.707107}: 1 (6)
+    :       PREDMV_MOD_FRAC = 0.5: 0 (2)
+    :       PREDMV_MOD_FRAC = 0:
+    :       :...RATIO_2Nx2N-MSM <= 0.916464: 0 (9)
+    :           RATIO_2Nx2N-MSM > 0.916464:
+    :           :...CTX_SPLIT in {3,6}: 0 (0)
+    :               CTX_SPLIT = 1: 0 (4/1)
+    :               CTX_SPLIT in {2,4,5}: 1 (7/1)
+    :               CTX_SPLIT = 0:
+    :               :...RATIO_2Nx2N-MSM > 1.27679: 1 (2)
+    :                   RATIO_2Nx2N-MSM <= 1.27679:
+    :                   :...BITS <= 32: 1 (2)
+    :                       BITS > 32: 0 (7)
+    TU_DEPTH = 0:
+    :...SAD <= 1461: 0 (713/38)
+        SAD > 1461:
+        :...PU_SIZE = 4: 0 (3/1)
+            PU_SIZE = 2:
+            :...MVP_IDX in {-1,0}: 0 (24/6)
+            :   MVP_IDX = 1: 1 (2)
+            PU_SIZE = 5:
+            :...BITS <= 19: 1 (4)
+            :   BITS > 19: 0 (3/1)
+            PU_SIZE = 6:
+            :...AVG_NEIGH_DEPTH <= 1.0601: 1 (3)
+            :   AVG_NEIGH_DEPTH > 1.0601: 0 (9)
+            PU_SIZE = 7:
+            :...PRED_MODE in {0,3}: 0 (0)
+            :   PRED_MODE = 1: 0 (6/1)
+            :   PRED_MODE = 2: 1 (2)
+            PU_SIZE = 1:
+            :...MVD_MOD_FRAC in {0.707107,0.790569,1.06066}: 1 (0)
+            :   MVD_MOD_FRAC in {0.25,0.353553,0.559017,0.75}: 0 (8/1)
+            :   MVD_MOD_FRAC in {0.5,0.901388}: 1 (4)
+            :   MVD_MOD_FRAC = 0:
+            :   :...MV_MOD_FRAC in {0.5,0.707107,0.75}: 1 (0)
+            :       MV_MOD_FRAC in {0.25,0.790569,1.06066}: 0 (5/1)
+            :       MV_MOD_FRAC in {0.353553,0.559017,0.901388}: 1 (8)
+            :       MV_MOD_FRAC = 0:
+            :       :...SSE <= 54979: 1 (6)
+            :           SSE > 54979: 0 (4)
+            PU_SIZE = 0:
+            :...BITS <= 38:
+                :...RATIO_BEST-MSM <= 1.00629: 0 (131/16)
+                :   RATIO_BEST-MSM > 1.00629:
+                :   :...RATIO_BEST_2Nx2N <= 0.715558: 0 (9/1)
+                :       RATIO_BEST_2Nx2N > 0.715558:
+                :       :...SAD <= 1578: 0 (4)
+                :           SAD > 1578: 1 (14/2)
+                BITS > 38:
+                :...BITS <= 42: 1 (6)
+                    BITS > 42:
+                    :...NON-Z-COEFF > 6: 0 (3)
+                        NON-Z-COEFF <= 6:
+                        :...RATIO_BEST-MSM <= 0.682409: 0 (5)
+                            RATIO_BEST-MSM > 0.682409:
+                            :...AVG_NEIGH_DEPTH <= 1.97727: 1 (5)
+                                AVG_NEIGH_DEPTH > 1.97727: 0 (3/1)
+
+
+Evaluation on training data (1264 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    45   96( 7.6%)   0.08   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   915    20    (a): class 0
+	    76   253    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	     83%  TU_DEPTH
+	     78%  SAD
+	     22%  DISTORTION
+	     21%  PU_SIZE
+	     16%  dQP
+	     14%  COST_2Nx2N
+	     14%  RATIO_BEST-MSM
+	      8%  SSE
+	      3%  NON-Z-COEFF
+	      3%  PREDMV_MOD_FRAC
+	      3%  MVD_MOD_FRAC
+	      2%  RATIO_2Nx2N-MSM
+	      2%  RATIO_BEST_2Nx2N
+	      2%  MVP_IDX
+	      2%  MV_MOD_FRAC
+	      2%  CTX_SPLIT
+	      2%  MV_MOD_INT
+	      2%  AVG_NEIGH_DEPTH
+
+
+Time: 0.0 secs

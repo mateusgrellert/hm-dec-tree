@@ -1,0 +1,133 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 08:53:01 2017
+-------------------------------
+
+    Options:
+	Boosted classifiers
+	Application `./ONLINE/BOOST/BasketballPass_d0_qp32'
+
+Read 90 cases (28 attributes) from ./ONLINE/BOOST/BasketballPass_d0_qp32.data
+
+-----  Trial 0:  -----
+
+Decision tree:
+
+BEST_COST <= 115769: 0 (47/1)
+BEST_COST > 115769: 1 (43/3)
+
+-----  Trial 1:  -----
+
+Decision tree:
+
+BITS > 36: 1 (16)
+BITS <= 36:
+:...PREDMV_MOD_INT <= 0: 0 (56.5/6.9)
+    PREDMV_MOD_INT > 0: 1 (17.5/3.8)
+
+-----  Trial 2:  -----
+
+Decision tree:
+
+AVG_NEIGH_DEPTH <= 0.776018: 0 (29.1/1.2)
+AVG_NEIGH_DEPTH > 0.776018: 1 (60.9/20.9)
+
+-----  Trial 3:  -----
+
+Decision tree:
+
+DISTORTION <= 108256: 0 (44.6/5.5)
+DISTORTION > 108256: 1 (45.4/15)
+
+-----  Trial 4:  -----
+
+Decision tree:
+
+TU_DEPTH = 0: 0 (77.1/24.7)
+TU_DEPTH = 1: 1 (8.2)
+TU_DEPTH = 2: 1 (4.7)
+
+-----  Trial 5:  -----
+
+Decision tree:
+
+BITS <= 3: 0 (14.1)
+BITS > 3:
+:...NON-Z-COEFF <= 42: 1 (69.8/24.1)
+    NON-Z-COEFF > 42: 0 (6.1)
+
+-----  Trial 6:  -----
+
+Decision tree:
+
+SSE > 417636: 1 (8.8)
+SSE <= 417636:
+:...SSE > 263148: 0 (12.5/0.6)
+    SSE <= 263148:
+    :...COST_2Nx2N <= 171859: 0 (51.6/12)
+        COST_2Nx2N > 171859: 1 (17)
+
+-----  Trial 7:  -----
+
+Decision tree:
+
+TU_DEPTH = 1: 1 (10.5)
+TU_DEPTH = 2: 1 (2.6)
+TU_DEPTH = 0:
+:...AVG_NEIGH_DEPTH <= 1.04545: 0 (36/6.9)
+    AVG_NEIGH_DEPTH > 1.04545: 1 (40.9/11.7)
+
+-----  Trial 8:  -----
+
+Decision tree:
+
+BEST_COST <= 115769: 0 (35.2/5.7)
+BEST_COST > 115769: 1 (54.8/13)
+
+-----  Trial 9:  -----
+
+Decision tree:
+
+TU_DEPTH = 0: 0 (80/26.1)
+TU_DEPTH = 1: 1 (7.2)
+TU_DEPTH = 2: 1 (1.8)
+
+
+Evaluation on training data (90 cases):
+
+Trial	       Decision Tree       
+-----	  -----------------------  
+	  Size      Errors   Cost  
+
+   0	     2    4( 4.4%)   0.04
+   1	     3   14(15.6%)   0.16
+   2	     2   16(17.8%)   0.18
+   3	     2    7( 7.8%)   0.08
+   4	     3   23(25.6%)   0.26
+   5	     3   17(18.9%)   0.19
+   6	     4    9(10.0%)   0.10
+   7	     4   13(14.4%)   0.14
+   8	     2    4( 4.4%)   0.04
+   9	     3   23(25.6%)   0.26
+boost	          1( 1.1%)   0.01   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	    49          (a): class 0
+	     1    40    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	    100%  DISTORTION
+	    100%  BEST_COST
+	    100%  SSE
+	    100%  TU_DEPTH
+	    100%  AVG_NEIGH_DEPTH
+	     83%  COST_2Nx2N
+	     77%  PREDMV_MOD_INT
+	     66%  NON-Z-COEFF
+
+
+Time: 0.0 secs

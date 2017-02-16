@@ -1,0 +1,141 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 09:32:42 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/ChinaSpeed_d1_qp37'
+
+Read 1352 cases (28 attributes) from ./ONLINE/NO-BOOST/ChinaSpeed_d1_qp37.data
+
+Decision tree:
+
+BITS > 38:
+:...BEST_COST <= 44197.8:
+:   :...PU_SIZE = 7: 0 (0)
+:   :   PU_SIZE = 1: 0 (1)
+:   :   PU_SIZE in {2,4,5,6}: 1 (9/1)
+:   :   PU_SIZE = 0:
+:   :   :...RATIO_BEST-MSM <= 1.00405: 0 (20/1)
+:   :       RATIO_BEST-MSM > 1.00405: 1 (4/1)
+:   BEST_COST > 44197.8:
+:   :...BITS > 138: 1 (162/1)
+:       BITS <= 138:
+:       :...DISTORTION > 378941: 1 (44)
+:           DISTORTION <= 378941:
+:           :...PRED_MODE = 0: 1 (0)
+:               PRED_MODE = 2:
+:               :...NON-Z-COEFF <= 23: 1 (72/7)
+:               :   NON-Z-COEFF > 23: 0 (5/1)
+:               PRED_MODE = 3:
+:               :...RATIO_BEST_2Nx2N <= 0.779065: 0 (2)
+:               :   RATIO_BEST_2Nx2N > 0.779065: 1 (15/1)
+:               PRED_MODE = 1:
+:               :...COLOC_SPLIT = 0: 1 (0)
+:                   COLOC_SPLIT = 1: 0 (7/1)
+:                   COLOC_SPLIT = 2:
+:                   :...BITS > 61: 0 (3)
+:                       BITS <= 61:
+:                       :...PREDMV_MOD_INT <= 12.0416: 1 (12)
+:                           PREDMV_MOD_INT > 12.0416: 0 (7/2)
+BITS <= 38:
+:...DISTORTION <= 104331:
+    :...TU_DEPTH = 0: 0 (801/67)
+    :   TU_DEPTH = 2: 1 (1)
+    :   TU_DEPTH = 1:
+    :   :...PRED_MODE in {0,1}: 0 (0)
+    :       PRED_MODE = 2: 1 (2)
+    :       PRED_MODE = 3: 0 (5)
+    DISTORTION > 104331:
+    :...COLOC_SPLIT = 0:
+        :...SAD <= 5471: 1 (3)
+        :   SAD > 5471: 0 (17/1)
+        COLOC_SPLIT = 1:
+        :...BITS > 31: 1 (5)
+        :   BITS <= 31:
+        :   :...dQP = 2: 0 (0)
+        :       dQP = 1: 1 (1)
+        :       dQP = 4: 0 (28/2)
+        :       dQP = 3:
+        :       :...RATIO_BEST_2Nx2N > 0.960445: 0 (8)
+        :           RATIO_BEST_2Nx2N <= 0.960445:
+        :           :...NON-Z-COEFF <= 2: 1 (7/1)
+        :               NON-Z-COEFF > 2: 0 (2)
+        COLOC_SPLIT = 2:
+        :...MVD_MOD_FRAC in {0.707107,1.06066}: 1 (0)
+            MVD_MOD_FRAC in {0.353553,0.559017,0.790569}: 1 (8/2)
+            MVD_MOD_FRAC in {0.5,0.75,0.901388}: 0 (10/2)
+            MVD_MOD_FRAC = 0.25:
+            :...MVP_IDX = -1: 0 (0)
+            :   MVP_IDX = 0: 0 (4)
+            :   MVP_IDX = 1:
+            :   :...SAD <= 8957: 1 (2)
+            :       SAD > 8957: 0 (2)
+            MVD_MOD_FRAC = 0:
+            :...PU_SIZE in {2,4,5}: 1 (15/1)
+                PU_SIZE = 1:
+                :...SSE <= 117156: 0 (2)
+                :   SSE > 117156: 1 (11/1)
+                PU_SIZE = 6:
+                :...AVG_NEIGH_DEPTH <= 1.52397: 0 (4/1)
+                :   AVG_NEIGH_DEPTH > 1.52397: 1 (2)
+                PU_SIZE = 7:
+                :...REF_IDX = 1: 1 (0)
+                :   REF_IDX = 0: 1 (6)
+                :   REF_IDX = -1:
+                :   :...SSE <= 196180: 0 (2)
+                :       SSE > 196180: 1 (2)
+                PU_SIZE = 0:
+                :...INTER_DIR = 0: 1 (1)
+                    INTER_DIR in {1,2}: 0 (7)
+                    INTER_DIR = 3:
+                    :...dQP in {1,2}: 1 (0)
+                        dQP = 3: 1 (7/1)
+                        dQP = 4:
+                        :...MV_MOD_FRAC in {0.353553,0.901388,
+                            :               1.06066}: 0 (0)
+                            MV_MOD_FRAC in {0.25,0.707107}: 1 (4/1)
+                            MV_MOD_FRAC in {0.5,0.559017,0.75,
+                            :               0.790569}: 0 (5/1)
+                            MV_MOD_FRAC = 0:
+                            :...AVG_NEIGH_DEPTH <= 1.02564: 0 (5)
+                                AVG_NEIGH_DEPTH > 1.02564: 1 (10/3)
+
+
+Evaluation on training data (1352 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    46  100( 7.4%)   0.07   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   868    21    (a): class 0
+	    79   384    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	     86%  DISTORTION
+	     60%  TU_DEPTH
+	     27%  BEST_COST
+	     15%  COLOC_SPLIT
+	     10%  PRED_MODE
+	      9%  PU_SIZE
+	      8%  MVD_MOD_FRAC
+	      6%  NON-Z-COEFF
+	      6%  dQP
+	      3%  INTER_DIR
+	      3%  RATIO_BEST_2Nx2N
+	      2%  SAD
+	      2%  RATIO_BEST-MSM
+	      2%  MV_MOD_FRAC
+	      2%  AVG_NEIGH_DEPTH
+	      1%  PREDMV_MOD_INT
+	      1%  SSE
+
+
+Time: 0.0 secs

@@ -24,6 +24,9 @@ bool TEncDecisionTree::encodeStarted;
 double TEncDecisionTree::SAD;
 double TEncDecisionTree::SSE;
 std::string TEncDecisionTree::sequence;
+std::string TEncDecisionTree::trainPath[3];
+std::string TEncDecisionTree::outPath[3];
+std::string TEncDecisionTree::testPath[3];
 string TEncDecisionTree::dataRec;
 FILE* TEncDecisionTree::trainFile[3];
 FILE* TEncDecisionTree::testFile[3];
@@ -35,8 +38,19 @@ void TEncDecisionTree::init(){
     int d;
 
     dataRec = string();
+    
 #if !ONLINE_TRAIN
+    
     for (d = 0 ; d <= 2; d++){
+        std::stringstream sstr_tr;
+        
+        sstr_tr << "./OFFLINE/";
+        if(boosting) sstr_tr << "BOOST/";
+        else         sstr_tr << "NO-BOOST/";
+        
+        sstr_tr << "TRA_NEB_BDrv_PkS_PtS_BQM_BBub_RH_d" << d;
+        trainPath[d] = sstr_tr.str();
+        
         gDepth = d;
         readTree();
     }
@@ -46,17 +60,32 @@ void TEncDecisionTree::init(){
     
     
     for(d = 0; d <= 2; d++){
-            std::stringstream sstr_tr;
-
+ 
 #if ONLINE_TRAIN
-        sstr_tr << "online_" << sequence << "_d" << d << "_qp" << QP << ".data";
+        std::stringstream sstr_tr,sstr_out;
+
+        sstr_tr <<  "./ONLINE/";
+        sstr_out << "./ONLINE/";
+        
+        if(boosting) sstr_tr <<  "BOOST/";
+        else         sstr_tr <<  "NO-BOOST/";
+        if(boosting) sstr_out << "BOOST/";
+        else         sstr_out << "NO-BOOST/";
+        
+        sstr_tr <<  sequence << "_d" << d << "_qp" << QP;
+        sstr_out << sequence << "_d" << d << "_qp" << QP << ".out";
+        
+        trainPath[d] = sstr_tr.str();
+        sstr_tr << ".data";
+        outPath[d] = sstr_out.str();
         trainFile[d] = fopen(sstr_tr.str().c_str(), "w");
 #endif
 #if WRITE_TEST
-                    std::stringstream sstr_tr;
+        std::stringstream sstr_te;
 
-        sstr_te << "test_d" << d << "_qp" << QP << ".data";
-        testFile[d] = fopen(sstr_te.str().c_str(), "w");
+        sstr_te << "./TEST/test_" << sequence << "_d" << d << "_qp" << QP << ".data";
+        testPath[d] = sstr_te.str();
+        testFile[d] = fopen(testPath[d].c_str(), "w");
 #endif
     }
 
@@ -351,16 +380,9 @@ void TEncDecisionTree::readTree(){
     int			 TotalRules=0;
    /*  Read information on attribute names, values, and classes  */
 
-    std::stringstream sstr;
+    FileStem = trainPath[gDepth].c_str();
 
-#if ONLINE_TRAIN
-    sstr << "online_" << sequence << "_d" << gDepth << "_qp" << QP;
-#else
-    sstr << "TRA_NEB_BDrv_PkS_PtS_BQM_BBub_RH_d" << gDepth;
-#endif
-    FileStem = sstr.str().c_str();
-
-    if ( ! (F = GetFile(".names", "r")) ) Error(NOFILE, Fn, "");
+    if ( ! (F = fopen("hm-feats.names", "r")) ) Error(NOFILE, Fn, "");
 
     GetNames(F);
 
@@ -563,12 +585,11 @@ void TEncDecisionTree::runC50Train(){
         sstr.str("");
         fclose(trainFile[d]);
         sstr << "./c5.0 ";
-        if(boosting){
-            sstr << "-b -f online_" << sequence << "_d" << d << "_qp" << QP <<  " -o online_" << sequence << "_d" << d << "_qp" << QP << "_boost.out";
-        }
-        else{
-            sstr << "-f online_" << sequence << "_d" << d <<    "_qp" << QP <<  " -o online_" << sequence << "_d" << d << "_qp" << QP  << ".out";
-        }
+        
+        if(boosting) sstr << "-b ";
+        
+        sstr << "-f " << trainPath[d] <<  " -o " << outPath[d];
+        
         printf("%s\n",sstr.str().c_str());
         
         if(system(sstr.str().c_str()) == -1){
@@ -579,340 +600,3 @@ void TEncDecisionTree::runC50Train(){
         readTree();
     }
 }
-
-/*
-bool TEncDecisionTree::decideSplit(TComDataCU *&cu, int depth){
-    
-    if (cost_MSM == 0){
-        cost_MSM = 0.1;
-    }
-    if (cost_2Nx2N == 0){
-        cost_2Nx2N = 0.1;
-    }
-    
-    double bits = cu->getTotalBits();
-    double costBest = cu->getTotalCost();
-    //double distortion = cu->getTotalDistortion();
-    double ratio2Nx2N_MSM = cost_2Nx2N / cost_MSM;
-    double ratioBest_2Nx2N = costBest / cost_2Nx2N;
-    //double ratioBest_MSM = costBest / cost_MSM;
-   // int puSize =  cu->getPartitionSize(0);
-    //int tuDepth = cu->getTransformIdx(0);
-    //int interDir = cu->getInterDir(0);
-    
-        
-    int colocSplit = 0;
-    TComDataCU *colocCuL0 = cu->getCUColocated(REF_PIC_LIST_0);
-    TComDataCU *colocCuL1 = cu->getCUColocated(REF_PIC_LIST_1);
-    
-    if(colocCuL0 == colocCuL1)
-        colocCuL1 = NULL;
-    UInt partIdx = cu->getZorderIdxInCtu();
-    if (colocCuL0)
-        colocSplit += (int) ((int) (colocCuL0->getDepth(partIdx)) > (int)  (cu->getDepth(0)));
-    if (colocCuL1)
-        colocSplit += (int) ((int) (colocCuL1->getDepth(partIdx)) > (int)  (cu->getDepth(0)));    int upSplt =  cu->getAboveSplitFlag( 0, depth );
-    int leftSplt =  cu->getLeftSplitFlag( 0, depth ); 
-    int upLeftSplt =  cu->getUpLeftSplitFlag( 0, depth ); 
-    int upRightSplt =  cu->getUpRightSplitFlag( 0, depth ); 
-    int ctxSplit = upSplt + leftSplt + upLeftSplt + upRightSplt + colocSplit;
-    
-    if (depth == 0){
-        if(bits <= 6){
-            if(neighDepth <= 0.47619){
-                return 0;
-            }
-            else{
-                if( colocSplit == 0 ){
-                    return 0;
-                }
-                else if (colocSplit == 1){
-                    if (bits <= 1){
-                        return 0;
-                    }
-                    else{
-                        if (SAD <= 12110){
-                            return 1;
-                        }
-                        else
-                        {
-                            return 0;
-                        }
-                    }
-                }
-                else{
-                    return 1;
-                }
-            }
-        }
-        else if (bits <= 53){
-            if(ratioBest_2Nx2N <= 0.999462){
-                return 1;
-            }
-            else{
-                if (bits <= 20){
-                    return 0;
-                }
-                else{
-                    return 1;
-                }
-            }
-        }
-        else{
-            return 1;
-        }
-    }
-    else if (depth == 1){
-        if (bits <= 7){
-            if (ratioBest_2Nx2N <= 0.913632){
-                if (colocSplit <= 1){
-                    return 0;
-                }
-                else{
-                    if(nonZeroCoeff <= 4){
-                        return 0;
-                    }
-                    else{
-                        return 1;
-                    }
-                }
-            }
-            else{
-                if (ctxSplit == 0){
-                    if(neighDepth <= 0.86239){
-                        return 1;
-                    }
-                    else{
-                        return 0;
-                    }
-                }
-                else if (ctxSplit == 1){
-                    if (ratio2Nx2N_MSM <= 1.0269){
-                        return 1;
-                    }
-                    else{
-                        return 0;
-                    }
-                }
-                else if (ctxSplit == 2){
-                    if (deltaQP <= 2){
-                        return 0;
-                    }
-                    else{
-                        return 1;
-                    }
-                }
-                else{
-                    return 1;
-                }
-            }
-        }
-        else{
-            return 1;
-        }
-    }
-    else{  //   depth 2
-        if(bits <= 7){
-            if(ratio2Nx2N_MSM <= 1.08821){
-                return 1; 
-            }
-            else{
-                if (ratio2Nx2N_MSM <= 2.09147){
-                    if(ctxSplit == 0){
-                        if(SSE <= 25105){
-                            return 0;
-                        }
-                        else{
-                            return 1;
-                        }
-                    }
-                    else if (ctxSplit == 1){
-                        if (nonZeroCoeff <= 3 && colocSplit == 0){
-                            return 1;
-                        }
-                        else{
-                            return 0;
-                        }
-                    }
-                    else{
-                        return 1;
-                    }
-                }
-                else{
-                    return 0;
-                }
-            }
-        }
-        else{
-            return 1;
-        }
-    }
-}
-*/
-/*
-bool TEncDecisionTree::decideSplit(TComDataCU *&cu, int depth){
-    
-    if (cost_MSM == 0){
-        cost_MSM = 0.1;
-    }
-    if (cost_2Nx2N == 0){
-        cost_2Nx2N = 0.1;
-    }
-    
-    double bits = cu->getTotalBits();
-    double neighDepth = getAverageNeighborDepth(cu);
-    double costBest = cu->getTotalCost();
-    double distortion = cu->getTotalDistortion();
-    double ratio2Nx2N_MSM = cost_2Nx2N / cost_MSM;
-    double ratioBest_2Nx2N = costBest / cost_2Nx2N;
-    double ratioBest_MSM = costBest / cost_MSM;
-    int puSize =  cu->getPartitionSize(0);
-    int tuDepth = cu->getTransformIdx(0);
-    int interDir = cu->getInterDir(0);
-    
-        
-    int colocSplit = 0;
-    TComDataCU *colocCuL0 = cu->getCUColocated(REF_PIC_LIST_0);
-    TComDataCU *colocCuL1 = cu->getCUColocated(REF_PIC_LIST_1);
-    
-    if(colocCuL0 == colocCuL1)
-        colocCuL1 = NULL;
-    UInt partIdx = cu->getZorderIdxInCtu();
-    if (colocCuL0)
-        colocSplit += (int) ((int) (colocCuL0->getDepth(partIdx)) > (int)  (cu->getDepth(0)));
-    if (colocCuL1)
-        colocSplit += (int) ((int) (colocCuL1->getDepth(partIdx)) > (int)  (cu->getDepth(0)));    int upSplt =  cu->getAboveSplitFlag( 0, depth );
-    int leftSplt =  cu->getLeftSplitFlag( 0, depth ); 
-    int upLeftSplt =  cu->getUpLeftSplitFlag( 0, depth ); 
-    int upRightSplt =  cu->getUpRightSplitFlag( 0, depth ); 
-    int ctxSplit = upSplt + leftSplt + upLeftSplt + upRightSplt + colocSplit;
-    
-    if (depth == 0){
-        if(bits <= 6){
-            if(neighDepth <= 0.47619){
-                return 0;
-            }
-            else{
-                if( ratio2Nx2N_MSM <= 1.00577 ){
-                    return 1;
-                }
-                else{
-                    return 0;
-                }
-            }
-        }
-        else if (bits <= 53){
-            if(ratioBest_2Nx2N <= 0.999462){
-                if (neighDepth <= 0.526786){
-                    if (bits <= 37){
-                        if(ratioBest_MSM <= 0.997862){
-                            if(puSize == 0 or puSize == 1 or puSize == 4){
-                                return 1;
-                            }
-                            else{
-                                return 0;
-                            }
-                        }
-                        else{
-                            return 0;
-                        }
-                    }
-                    else{
-                        return 1;
-                    }
-                }
-                else{
-                    return 1;
-                }
-            }
-            else{
-                return 0;
-            }
-        }
-        else{
-            return 1;
-        }
-    }
-    else if (depth == 1){
-        if (bits <= 8){
-            return 0;
-        }
-        else{
-            if(tuDepth == 0){
-                if(ratioBest_2Nx2N <= 0.999966){
-                    if (neighDepth <= 1.00862){
-                        if (distortion <= 33380){
-                            return 0;
-                        }
-                        else{
-                            return 1;
-                        }
-                    }
-                    else{
-                        if (bits <= 90){
-                            if (ratioBest_MSM <= 0.999365){
-                                return 1;
-                            }
-                            else{
-                                return 0;
-                            }
-                        }
-                        else{
-                            return 1;
-                        }
-                    }
-                }
-                else{
-                    if(bits <= 18){
-                        return 0;
-                    }
-                    else{
-                        if (costBest <= 76452.2){
-                            return 0;
-                        }
-                        else{
-                            return 1;
-                        }
-                    }
-                }
-            }
-            else{
-                return 1;
-            }
-        }
-    }
-    else{  //   depth 2
-        if(bits <= 71){
-            if(tuDepth == 0){
-                if(puSize == 0){
-                    if (bits <= 33){
-                        return 0;
-                    }
-                    else{
-                        if(ctxSplit == 0){
-                            if (interDir == 0 or interDir == 3){
-                                return 0;
-                            }
-                            else{
-                                return 1;
-                            }
-                        }
-                        else{
-                            return 0;
-                        }
-                    }
-                }
-                else{
-                    return 1;
-                }
-            }
-            else{
-                return 1;
-            }
-        }
-        else{
-            return 1;
-        }
-    }
-}
- */

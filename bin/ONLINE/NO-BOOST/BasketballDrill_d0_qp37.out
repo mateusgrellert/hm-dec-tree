@@ -1,0 +1,88 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 11:14:28 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/BasketballDrill_d0_qp37'
+
+Read 455 cases (28 attributes) from ./ONLINE/NO-BOOST/BasketballDrill_d0_qp37.data
+
+Decision tree:
+
+RATIO_BEST-MSM > 0.993968:
+:...SSE > 220818:
+:   :...CTX_SPLIT in {0,1}: 0 (16/1)
+:   :   CTX_SPLIT in {4,5,6}: 1 (9)
+:   :   CTX_SPLIT = 2:
+:   :   :...dQP in {2,3}: 0 (0)
+:   :   :   dQP = 1: 1 (2)
+:   :   :   dQP = 4: 0 (5/1)
+:   :   CTX_SPLIT = 3:
+:   :   :...FME = 1: 1 (0)
+:   :       FME = 0: 0 (2)
+:   :       FME = 2: 1 (7/1)
+:   SSE <= 220818:
+:   :...BITS <= 38: 0 (230/1)
+:       BITS > 38:
+:       :...MV_MOD_INT <= 0: 1 (4)
+:           MV_MOD_INT > 0:
+:           :...TU_DEPTH = 0: 0 (0)
+:               TU_DEPTH = 1: 0 (12/1)
+:               TU_DEPTH = 2: 1 (2)
+RATIO_BEST-MSM <= 0.993968:
+:...BITS > 60: 1 (72)
+    BITS <= 60:
+    :...COLOC_SPLIT = 0: 0 (7)
+        COLOC_SPLIT = 2:
+        :...COST_2Nx2N > 259275: 1 (51/11)
+        :   COST_2Nx2N <= 259275:
+        :   :...RATIO_BEST_2Nx2N <= 1.00317: 1 (2)
+        :       RATIO_BEST_2Nx2N > 1.00317: 0 (4)
+        COLOC_SPLIT = 1:
+        :...REF_IDX = -1: 0 (4/1)
+            REF_IDX = 1:
+            :...CTX_SPLIT in {0,4,6}: 0 (0)
+            :   CTX_SPLIT in {1,5}: 0 (5)
+            :   CTX_SPLIT in {2,3}: 1 (3)
+            REF_IDX = 0:
+            :...MVD_MOD_FRAC in {0.353553,0.5,0.559017,0.707107,0.75,0.790569,
+                :                1.06066}: 1 (0)
+                MVD_MOD_FRAC in {0.25,0.901388}: 0 (4/1)
+                MVD_MOD_FRAC = 0:
+                :...BITS <= 11: 0 (2)
+                    BITS > 11: 1 (12)
+
+
+Evaluation on training data (455 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    21   18( 4.0%)   0.04   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   285    12    (a): class 0
+	     6   152    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  RATIO_BEST-MSM
+	     91%  BITS
+	     64%  SSE
+	     21%  COLOC_SPLIT
+	     13%  COST_2Nx2N
+	     11%  CTX_SPLIT
+	      7%  REF_IDX
+	      4%  MV_MOD_INT
+	      4%  MVD_MOD_FRAC
+	      3%  TU_DEPTH
+	      2%  FME
+	      2%  dQP
+	      1%  RATIO_BEST_2Nx2N
+
+
+Time: 0.0 secs

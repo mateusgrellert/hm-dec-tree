@@ -1,0 +1,184 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 09:33:26 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/ChinaSpeed_d1_qp27'
+
+Read 2496 cases (28 attributes) from ./ONLINE/NO-BOOST/ChinaSpeed_d1_qp27.data
+
+Decision tree:
+
+BITS > 138:
+:...TU_DEPTH in {1,2}: 1 (561/2)
+:   TU_DEPTH = 0:
+:   :...BITS > 284: 1 (10)
+:       BITS <= 284:
+:       :...MVD_MOD_INT > 1: 1 (3)
+:           MVD_MOD_INT <= 1:
+:           :...PU_SIZE in {2,5,6}: 0 (0)
+:               PU_SIZE in {0,4}: 0 (38/8)
+:               PU_SIZE in {1,7}: 1 (3)
+BITS <= 138:
+:...DISTORTION > 26922:
+    :...COLOC_SPLIT = 0: 0 (17/8)
+    :   COLOC_SPLIT = 2: 1 (271/28)
+    :   COLOC_SPLIT = 1:
+    :   :...BEST_COST > 42509.4: 1 (11/2)
+    :       BEST_COST <= 42509.4:
+    :       :...BEST_COST <= 28863.4: 1 (2)
+    :           BEST_COST > 28863.4: 0 (20/2)
+    DISTORTION <= 26922:
+    :...TU_DEPTH = 2:
+        :...CTX_SPLIT in {0,1}: 0 (7)
+        :   CTX_SPLIT in {2,3,5,6}: 1 (9/1)
+        :   CTX_SPLIT = 4:
+        :   :...DISTORTION <= 14293: 0 (2)
+        :       DISTORTION > 14293: 1 (4)
+        TU_DEPTH = 1:
+        :...COLOC_SPLIT = 2: 1 (31/3)
+        :   COLOC_SPLIT = 0:
+        :   :...MVP_IDX = 0: 0 (2)
+        :   :   MVP_IDX = 1: 1 (2)
+        :   :   MVP_IDX = -1:
+        :   :   :...MV_MOD_FRAC in {0.25,0.559017,0.75,0.901388,
+        :   :       :               1.06066}: 0 (0)
+        :   :       MV_MOD_FRAC in {0.353553,0.707107,0.790569}: 1 (6/1)
+        :   :       MV_MOD_FRAC = 0.5: 0 (1)
+        :   :       MV_MOD_FRAC = 0:
+        :   :       :...PU_SIZE in {2,5,6}: 0 (0)
+        :   :           PU_SIZE in {0,1}: 0 (24/6)
+        :   :           PU_SIZE in {4,7}: 1 (3)
+        :   COLOC_SPLIT = 1:
+        :   :...BITS > 87: 1 (16)
+        :       BITS <= 87:
+        :       :...AVG_NEIGH_DEPTH <= 1: 1 (15/1)
+        :           AVG_NEIGH_DEPTH > 1:
+        :           :...PREDMV_MOD_FRAC in {0.25,0.559017,0.901388,
+        :               :                   1.06066}: 0 (0)
+        :               PREDMV_MOD_FRAC in {0,0.5}: 0 (19/5)
+        :               PREDMV_MOD_FRAC in {0.353553,0.707107,0.75,
+        :                                   0.790569}: 1 (4)
+        TU_DEPTH = 0:
+        :...PU_SIZE = 0: 0 (1109/104)
+            PU_SIZE = 1:
+            :...CTX_SPLIT in {5,6}: 1 (18/3)
+            :   CTX_SPLIT = 0:
+            :   :...AVG_NEIGH_DEPTH <= 1.15455: 0 (5)
+            :   :   AVG_NEIGH_DEPTH > 1.15455: 1 (2)
+            :   CTX_SPLIT = 1:
+            :   :...AVG_NEIGH_DEPTH <= 0.961623: 1 (3)
+            :   :   AVG_NEIGH_DEPTH > 0.961623: 0 (8)
+            :   CTX_SPLIT = 2:
+            :   :...dQP = 2: 0 (0)
+            :   :   dQP = 1: 1 (2)
+            :   :   dQP in {3,4}: 0 (21/5)
+            :   CTX_SPLIT = 3:
+            :   :...RATIO_BEST-MSM <= 0.306583: 0 (3)
+            :   :   RATIO_BEST-MSM > 0.306583: 1 (11/1)
+            :   CTX_SPLIT = 4:
+            :   :...dQP = 2: 0 (0)
+            :       dQP in {1,3}: 1 (5)
+            :       dQP = 4: 0 (11/3)
+            PU_SIZE = 6:
+            :...MVD_MOD_FRAC in {0.353553,0.707107,0.75,0.901388,
+            :   :                1.06066}: 0 (0)
+            :   MVD_MOD_FRAC in {0.25,0.5,0.790569}: 0 (4)
+            :   MVD_MOD_FRAC = 0.559017: 1 (3/1)
+            :   MVD_MOD_FRAC = 0:
+            :   :...SSE <= 14763: 0 (12/4)
+            :       SSE > 14763: 1 (9/2)
+            PU_SIZE = 7:
+            :...CTX_SPLIT in {0,1,3}: 0 (8)
+            :   CTX_SPLIT in {4,5,6}: 1 (19/5)
+            :   CTX_SPLIT = 2:
+            :   :...MV_MOD_FRAC in {0.353553,0.5,0.559017,0.707107,0.790569,
+            :       :               0.901388,1.06066}: 0 (0)
+            :       MV_MOD_FRAC in {0,0.25}: 0 (8/1)
+            :       MV_MOD_FRAC = 0.75: 1 (2)
+            PU_SIZE = 5:
+            :...COLOC_SPLIT in {0,1}: 0 (18/1)
+            :   COLOC_SPLIT = 2:
+            :   :...RATIO_BEST_2Nx2N <= 0.824083: 1 (9)
+            :       RATIO_BEST_2Nx2N > 0.824083:
+            :       :...INTER_DIR = 0: 0 (0)
+            :           INTER_DIR = 1: 1 (3)
+            :           INTER_DIR in {2,3}: 0 (10/1)
+            PU_SIZE = 2:
+            :...PREDMV_MOD_FRAC in {0.353553,0.75}: 1 (0)
+            :   PREDMV_MOD_FRAC in {0.25,0.901388}: 0 (3)
+            :   PREDMV_MOD_FRAC in {0.559017,0.707107,0.790569,
+            :   :                   1.06066}: 1 (10/1)
+            :   PREDMV_MOD_FRAC = 0.5:
+            :   :...MV_MOD_INT <= 9: 1 (6)
+            :   :   MV_MOD_INT > 9: 0 (2)
+            :   PREDMV_MOD_FRAC = 0:
+            :   :...NON-Z-COEFF <= 1: 0 (12/1)
+            :       NON-Z-COEFF > 1:
+            :       :...INTER_DIR = 0: 1 (0)
+            :           INTER_DIR = 2: 0 (8/3)
+            :           INTER_DIR = 3: 1 (7)
+            :           INTER_DIR = 1:
+            :           :...BITS <= 19: 1 (5)
+            :               BITS > 19: 0 (2)
+            PU_SIZE = 4:
+            :...COST_MSM > 49876.1: 0 (5)
+                COST_MSM <= 49876.1:
+                :...COLOC_SPLIT = 0: 1 (6/1)
+                    COLOC_SPLIT = 1:
+                    :...dQP = 2: 0 (0)
+                    :   dQP = 3: 1 (3)
+                    :   dQP = 4: 0 (11/3)
+                    :   dQP = 1:
+                    :   :...CTX_SPLIT in {0,3,4,6}: 0 (0)
+                    :       CTX_SPLIT in {1,2}: 0 (4/1)
+                    :       CTX_SPLIT = 5: 1 (2)
+                    COLOC_SPLIT = 2:
+                    :...PRED_MODE in {0,3}: 1 (0)
+                        PRED_MODE = 2: 0 (2)
+                        PRED_MODE = 1:
+                        :...REF_IDX = 1: 1 (0)
+                            REF_IDX = 0: 1 (20/1)
+                            REF_IDX = -1:
+                            :...DISTORTION <= 14553: 1 (2)
+                                DISTORTION > 14553: 0 (2)
+
+
+Evaluation on training data (2496 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    68  209( 8.4%)   0.08   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	  1242    53    (a): class 0
+	   156  1045    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	     87%  TU_DEPTH
+	     75%  DISTORTION
+	     59%  PU_SIZE
+	     21%  COLOC_SPLIT
+	      6%  CTX_SPLIT
+	      3%  PREDMV_MOD_FRAC
+	      2%  dQP
+	      2%  COST_MSM
+	      2%  AVG_NEIGH_DEPTH
+	      2%  MV_MOD_FRAC
+	      2%  MVD_MOD_INT
+	      2%  MVP_IDX
+	      1%  INTER_DIR
+	      1%  NON-Z-COEFF
+	      1%  BEST_COST
+	      1%  MVD_MOD_FRAC
+	      1%  PRED_MODE
+
+
+Time: 0.0 secs

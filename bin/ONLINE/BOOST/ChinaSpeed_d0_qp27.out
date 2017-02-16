@@ -1,0 +1,863 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 09:46:48 2017
+-------------------------------
+
+    Options:
+	Boosted classifiers
+	Application `./ONLINE/BOOST/ChinaSpeed_d0_qp27'
+
+Read 960 cases (28 attributes) from ./ONLINE/BOOST/ChinaSpeed_d0_qp27.data
+
+-----  Trial 0:  -----
+
+Decision tree:
+
+AVG_NEIGH_DEPTH > 0.878788:
+:...COST_MSM > 89243.8: 1 (397/5)
+:   COST_MSM <= 89243.8:
+:   :...BITS <= 57:
+:       :...COLOC_SPLIT = 0:
+:       :   :...NON-Z-COEFF <= 1: 0 (4)
+:       :   :   NON-Z-COEFF > 1: 1 (3)
+:       :   COLOC_SPLIT = 1:
+:       :   :...MVP_IDX in {-1,1}: 0 (31/3)
+:       :   :   MVP_IDX = 0: 1 (2)
+:       :   COLOC_SPLIT = 2:
+:       :   :...SAD > 11864: 0 (6)
+:       :       SAD <= 11864:
+:       :       :...DISTORTION <= 9526: 0 (13/2)
+:       :           DISTORTION > 9526: 1 (51/15)
+:       BITS > 57:
+:       :...TU_DEPTH = 0: 1 (0)
+:           TU_DEPTH = 2: 1 (34/1)
+:           TU_DEPTH = 1:
+:           :...DISTORTION > 7195: 1 (107/17)
+:               DISTORTION <= 7195:
+:               :...SAD <= 3563: 1 (3)
+:                   SAD > 3563: 0 (11/2)
+AVG_NEIGH_DEPTH <= 0.878788:
+:...NON-Z-COEFF > 31:
+    :...BITS <= 39: 0 (8/1)
+    :   BITS > 39: 1 (16/2)
+    NON-Z-COEFF <= 31:
+    :...PU_SIZE in {4,7}: 1 (5/1)
+        PU_SIZE = 5: 0 (2/1)
+        PU_SIZE = 2:
+        :...AVG_NEIGH_DEPTH <= 0.778799: 0 (12)
+        :   AVG_NEIGH_DEPTH > 0.778799: 1 (2)
+        PU_SIZE = 6:
+        :...AVG_NEIGH_DEPTH <= 0.6: 0 (5)
+        :   AVG_NEIGH_DEPTH > 0.6: 1 (3)
+        PU_SIZE = 1:
+        :...MVD_MOD_INT > 1.41421: 0 (2)
+        :   MVD_MOD_INT <= 1.41421:
+        :   :...FME in {0,1}: 1 (8/1)
+        :       FME = 2: 0 (4/1)
+        PU_SIZE = 0:
+        :...dQP = 2: 0 (0)
+            dQP = 1:
+            :...COLOC_SPLIT = 2: 0 (0)
+            :   COLOC_SPLIT = 0: 0 (10/1)
+            :   COLOC_SPLIT = 1:
+            :   :...AVG_NEIGH_DEPTH <= 0.754735: 1 (3)
+            :       AVG_NEIGH_DEPTH > 0.754735: 0 (2)
+            dQP = 3:
+            :...PRED_MODE in {1,3}: 0 (10)
+            :   PRED_MODE = 2: 1 (5/1)
+            :   PRED_MODE = 0:
+            :   :...AVG_NEIGH_DEPTH <= 0.75641: 0 (12)
+            :       AVG_NEIGH_DEPTH > 0.75641:
+            :       :...COLOC_SPLIT in {0,2}: 1 (5)
+            :           COLOC_SPLIT = 1: 0 (2)
+            dQP = 4:
+            :...BITS <= 70: 0 (159/5)
+                BITS > 70:
+                :...SSE > 160628: 1 (5/1)
+                    SSE <= 160628:
+                    :...REF_IDX = 1: 0 (0)
+                        REF_IDX = -1: 0 (15/1)
+                        REF_IDX = 0: 1 (3/1)
+
+-----  Trial 1:  -----
+
+Decision tree:
+
+COST_MSM > 99605.7:
+:...BEST_COST <= 40804.1: 0 (6.7/1.5)
+:   BEST_COST > 40804.1: 1 (302.4/9.5)
+COST_MSM <= 99605.7:
+:...MVD_MOD_INT > 0: 1 (30.7/3.8)
+    MVD_MOD_INT <= 0:
+    :...dQP = 2: 0 (0)
+        dQP = 1:
+        :...DISTORTION <= 4048: 0 (10/0.8)
+        :   DISTORTION > 4048:
+        :   :...PREDMV_MOD_FRAC in {0.5,0.707107,0.901388,
+        :       :                   1.06066}: 1 (0)
+        :       PREDMV_MOD_FRAC = 0.25: 1 (1.5)
+        :       PREDMV_MOD_FRAC = 0.353553: 1 (6.7)
+        :       PREDMV_MOD_FRAC = 0.559017: 1 (0.8)
+        :       PREDMV_MOD_FRAC = 0.75: 0 (0.8)
+        :       PREDMV_MOD_FRAC = 0.790569: 1 (1.5)
+        :       PREDMV_MOD_FRAC = 0:
+        :       :...RATIO_BEST-MSM > 1.0003: 0 (20.3/6.1)
+        :           RATIO_BEST-MSM <= 1.0003:
+        :           :...RATIO_BEST-MSM <= 0.672368: 0 (5.9/1.5)
+        :               RATIO_BEST-MSM > 0.672368: 1 (67.4/6.1)
+        dQP = 3:
+        :...PU_SIZE = 1: 1 (9/0.8)
+        :   PU_SIZE = 2: 1 (11.3/3.1)
+        :   PU_SIZE = 4: 1 (0.8)
+        :   PU_SIZE = 5: 0 (4.4)
+        :   PU_SIZE = 6: 1 (2.3)
+        :   PU_SIZE = 7: 0 (10.3/1.5)
+        :   PU_SIZE = 0:
+        :   :...MV_MOD_FRAC in {0.353553,0.5,0.559017,0.707107,0.790569,
+        :       :               0.901388}: 0 (0)
+        :       MV_MOD_FRAC = 0.25: 0 (1.5)
+        :       MV_MOD_FRAC = 0.75: 0 (5.4/0.8)
+        :       MV_MOD_FRAC = 1.06066: 1 (0.8)
+        :       MV_MOD_FRAC = 0:
+        :       :...RATIO_BEST_2Nx2N > 0.995293: 1 (4.6)
+        :           RATIO_BEST_2Nx2N <= 0.995293:
+        :           :...BEST_COST > 84744.7: 1 (3.1)
+        :               BEST_COST <= 84744.7:
+        :               :...SAD <= 8007: 1 (21.3/8.4)
+        :                   SAD > 8007: 0 (55.7/8.4)
+        dQP = 4:
+        :...BEST_COST <= 10275.2: 0 (43.7)
+            BEST_COST > 10275.2:
+            :...MV_MOD_INT > 1:
+                :...COST_2Nx2N > 45881.3: 1 (24.9/2.3)
+                :   COST_2Nx2N <= 45881.3:
+                :   :...COLOC_SPLIT = 0: 1 (5.1/0.8)
+                :       COLOC_SPLIT = 1: 0 (6.1)
+                :       COLOC_SPLIT = 2: 0 (26.7/5.4)
+                MV_MOD_INT <= 1:
+                :...BITS <= 2: 0 (54.8/1.5)
+                    BITS > 2:
+                    :...REF_IDX = -1: 0 (69.7/9.7)
+                        REF_IDX = 1: 0 (18.7/2.3)
+                        REF_IDX = 0:
+                        :...DISTORTION <= 24162: 1 (25.4/8.4)
+                            DISTORTION > 24162:
+                            :...RATIO_2Nx2N-MSM > 1.06099: 0 (28.8)
+                                RATIO_2Nx2N-MSM <= 1.06099:
+                                :...BITS > 108: 1 (5.4)
+                                    BITS <= 108:
+                                    :...RATIO_BEST-MSM <= 0.811939: 1 (3.8/0.8)
+                                        RATIO_BEST-MSM > 0.811939:
+                                        :...BITS <= 4: 1 (13.6/5.4)
+                                            BITS > 4: 0 (48.5/7.7)
+
+-----  Trial 2:  -----
+
+Decision tree:
+
+BITS > 350:
+:...RATIO_BEST_2Nx2N <= 0.554304: 0 (4.6/1.2)
+:   RATIO_BEST_2Nx2N > 0.554304: 1 (171.7/3.4)
+BITS <= 350:
+:...DISTORTION > 83002: 1 (85.5/6.1)
+    DISTORTION <= 83002:
+    :...RATIO_BEST-MSM <= 0.68239:
+        :...SSE <= 233189: 1 (42.7/3.1)
+        :   SSE > 233189: 0 (4.6/0.6)
+        RATIO_BEST-MSM > 0.68239:
+        :...AVG_NEIGH_DEPTH <= 0.384615: 0 (109.6/10.5)
+            AVG_NEIGH_DEPTH > 0.384615:
+            :...NON-Z-COEFF > 35:
+                :...SSE > 282706: 0 (5.8/0.6)
+                :   SSE <= 282706:
+                :   :...RATIO_BEST_2Nx2N <= 0.850372: 0 (3.4)
+                :       RATIO_BEST_2Nx2N > 0.850372: 1 (32/2.4)
+                NON-Z-COEFF <= 35:
+                :...TU_DEPTH = 0:
+                    :...PU_SIZE = 0: 0 (156.3/39.7)
+                    :   PU_SIZE = 1: 0 (18.6/8.2)
+                    :   PU_SIZE = 2: 0 (14.8/3.1)
+                    :   PU_SIZE = 4: 1 (8.4)
+                    :   PU_SIZE = 5: 1 (5.6/2.5)
+                    :   PU_SIZE = 6: 0 (4.6)
+                    :   PU_SIZE = 7: 0 (5.9/2.5)
+                    TU_DEPTH = 2:
+                    :...dQP = 2: 1 (0)
+                    :   dQP = 1: 1 (18.6)
+                    :   dQP = 3: 1 (3.7)
+                    :   dQP = 4: 0 (20.1/7.9)
+                    TU_DEPTH = 1:
+                    :...RATIO_BEST_2Nx2N <= 0.780788: 0 (42.3/6.7)
+                        RATIO_BEST_2Nx2N > 0.780788:
+                        :...COST_2Nx2N > 104562: 0 (17.7/2.4)
+                            COST_2Nx2N <= 104562:
+                            :...RATIO_BEST-MSM > 1.00819: 1 (9)
+                                RATIO_BEST-MSM <= 1.00819:
+                                :...REF_IDX = 1: 0 (20.3/3)
+                                    REF_IDX = -1:
+                                    :...dQP = 2: 1 (0)
+                                    :   dQP = 1: 1 (14.1/6.7)
+                                    :   dQP = 3: 0 (15.7/4.9)
+                                    :   dQP = 4: 1 (18.3/4.2)
+                                    REF_IDX = 0:
+                                    :...SSE <= 23590: 1 (22.6/4.3)
+                                        SSE > 23590:
+                                        :...RATIO_BEST-MSM <= 0.956759: 1 (11.5)
+                                            RATIO_BEST-MSM > 0.956759:
+                                            :...BITS <= 71: 0 (31.6/2.4)
+                                                BITS > 71:
+                                                :...SAD <= 7174: 0 (6.5/0.6)
+                                                    SAD > 7174: [S1]
+
+SubTree [S1]
+
+NON-Z-COEFF <= 2: 0 (18.1/7.3)
+NON-Z-COEFF > 2: 1 (15.9)
+
+-----  Trial 3:  -----
+
+Decision tree:
+
+BITS > 553: 1 (105.6)
+BITS <= 553:
+:...COST_MSM > 155667: 1 (65.7/0.5)
+    COST_MSM <= 155667:
+    :...BEST_COST <= 6084.27: 0 (33.3/0.9)
+        BEST_COST > 6084.27:
+        :...PREDMV_MOD_INT > 12.3693: 1 (35.3/2)
+            PREDMV_MOD_INT <= 12.3693:
+            :...AVG_NEIGH_DEPTH <= 0.8:
+                :...RATIO_2Nx2N-MSM <= 0.92839: 1 (20.7/5)
+                :   RATIO_2Nx2N-MSM > 0.92839:
+                :   :...PU_SIZE = 1: 1 (17.4/3.6)
+                :       PU_SIZE = 2: 0 (13.2/2.6)
+                :       PU_SIZE = 4: 1 (3.9)
+                :       PU_SIZE = 5: 0 (4)
+                :       PU_SIZE = 6: 0 (2.8)
+                :       PU_SIZE = 7: 0 (5.4)
+                :       PU_SIZE = 0:
+                :       :...BITS <= 1: 0 (26.4/4.9)
+                :           BITS > 1:
+                :           :...COST_2Nx2N <= 36074.1: 0 (96.5/18.8)
+                :               COST_2Nx2N > 36074.1:
+                :               :...NON-Z-COEFF > 139: 0 (5.3)
+                :                   NON-Z-COEFF <= 139:
+                :                   :...dQP = 2: 1 (0)
+                :                       dQP = 1: 0 (0.5)
+                :                       dQP = 3: 1 (7.9)
+                :                       dQP = 4:
+                :                       :...BEST_COST <= 39976.2: 1 (33.6/10.5)
+                :                           BEST_COST > 39976.2: 0 (19.4)
+                AVG_NEIGH_DEPTH > 0.8:
+                :...INTER_DIR = 1: 1 (35/8.8)
+                    INTER_DIR = 2: 1 (24.8/5.3)
+                    INTER_DIR = 0:
+                    :...TU_DEPTH = 0: 0 (0)
+                    :   TU_DEPTH = 2: 1 (5.3)
+                    :   TU_DEPTH = 1:
+                    :   :...RATIO_BEST_2Nx2N > 0.931485: 1 (11.4)
+                    :       RATIO_BEST_2Nx2N <= 0.931485:
+                    :       :...SAD <= 13301: 1 (4.1)
+                    :           SAD > 13301:
+                    :           :...SAD > 42625: 1 (2.7)
+                    :               SAD <= 42625:
+                    :               :...BITS <= 99: 1 (4.5/0.5)
+                    :                   BITS > 99:
+                    :                   :...RATIO_BEST-MSM <= 0.958096: 0 (37.4/3.8)
+                    :                       RATIO_BEST-MSM > 0.958096: 1 (2.4)
+                    INTER_DIR = 3:
+                    :...MVP_IDX = 0: 1 (22/4)
+                        MVP_IDX = 1: 1 (18.4/5.1)
+                        MVP_IDX = -1:
+                        :...PU_SIZE = 2: 1 (21.5/4.6)
+                            PU_SIZE = 4: 1 (7.9/0.5)
+                            PU_SIZE = 5: 1 (9.7/4.6)
+                            PU_SIZE = 6: 0 (11.4/4)
+                            PU_SIZE = 7: 1 (13.6/6.6)
+                            PU_SIZE = 1:
+                            :...FME = 1: 1 (0)
+                            :   FME = 2: 1 (7.1)
+                            :   FME = 0:
+                            :   :...RATIO_BEST-MSM <= 0.982473: 0 (27.3/7.9)
+                            :       RATIO_BEST-MSM > 0.982473: 1 (10)
+                            PU_SIZE = 0:
+                            :...COST_2Nx2N > 84188.7: 1 (12.4)
+                                COST_2Nx2N <= 84188.7:
+                                :...RATIO_2Nx2N-MSM > 1.60254: 1 (9.2)
+                                    RATIO_2Nx2N-MSM <= 1.60254:
+                                    :...CTX_SPLIT = 0: 0 (0)
+                                        CTX_SPLIT = 1: 1 (4.6/1.9)
+                                        CTX_SPLIT = 2: 1 (19.4/8.2)
+                                        CTX_SPLIT = 4: 0 (28.2/11.9)
+                                        CTX_SPLIT = 6: 0 (32.9/15.8)
+                                        CTX_SPLIT = 3:
+                                        :...AVG_NEIGH_DEPTH <= 1.16986: 0 (20.7/6.9)
+                                        :   AVG_NEIGH_DEPTH > 1.16986: 1 (19.2)
+                                        CTX_SPLIT = 5:
+                                        :...NON-Z-COEFF <= 2: 0 (25/2.6)
+                                            NON-Z-COEFF > 2: 1 (15.2/5.3)
+
+-----  Trial 4:  -----
+
+Decision tree:
+
+COST_2Nx2N > 89362.9: 1 (188.9/15.8)
+COST_2Nx2N <= 89362.9:
+:...BITS > 59:
+    :...PRED_MODE = 0: 1 (0)
+    :   PRED_MODE = 1: 1 (0.4)
+    :   PRED_MODE = 3:
+    :   :...AVG_NEIGH_DEPTH > 1.275: 1 (28/4.7)
+    :   :   AVG_NEIGH_DEPTH <= 1.275:
+    :   :   :...SAD <= 18571: 0 (37.2/2.3)
+    :   :       SAD > 18571:
+    :   :       :...AVG_NEIGH_DEPTH <= 1.1863: 1 (31.6/7.7)
+    :   :           AVG_NEIGH_DEPTH > 1.1863: 0 (7.5)
+    :   PRED_MODE = 2:
+    :   :...RATIO_BEST-MSM <= 0.910523: 1 (29.1)
+    :       RATIO_BEST-MSM > 0.910523:
+    :       :...PU_SIZE = 1: 1 (38.3/12.6)
+    :           PU_SIZE = 2: 1 (18.1/6)
+    :           PU_SIZE = 4: 1 (1.5)
+    :           PU_SIZE = 5: 0 (7.5)
+    :           PU_SIZE = 6: 1 (9.1)
+    :           PU_SIZE = 7: 0 (8.1/4)
+    :           PU_SIZE = 0:
+    :           :...SSE <= 69529: 1 (58.2/4.3)
+    :               SSE > 69529:
+    :               :...SSE <= 78293: 0 (11.7)
+    :                   SSE > 78293:
+    :                   :...SSE > 275198: 0 (4.3)
+    :                       SSE <= 275198:
+    :                       :...REF_IDX = -1: 1 (3.1)
+    :                           REF_IDX = 0: 1 (30.1/4.3)
+    :                           REF_IDX = 1: 0 (2.1)
+    BITS <= 59:
+    :...AVG_NEIGH_DEPTH <= 0.323077: 0 (59/3.9)
+        AVG_NEIGH_DEPTH > 0.323077:
+        :...COLOC_SPLIT = 0:
+            :...FME = 0: 0 (29.1/6.4)
+            :   FME = 1: 0 (1.9)
+            :   FME = 2: 1 (14.7/2.8)
+            COLOC_SPLIT = 1:
+            :...BITS <= 7: 0 (45.4)
+            :   BITS > 7:
+            :   :...RATIO_BEST-MSM > 1.00825: 1 (8)
+            :       RATIO_BEST-MSM <= 1.00825:
+            :       :...MVP_IDX = 0: 1 (3.6/1.6)
+            :           MVP_IDX = 1: 0 (3.8)
+            :           MVP_IDX = -1:
+            :           :...RATIO_BEST_2Nx2N > 0.999036: 1 (3.8)
+            :               RATIO_BEST_2Nx2N <= 0.999036:
+            :               :...REF_IDX = -1: 0 (14.8/1.6)
+            :                   REF_IDX = 0: 0 (22.5/0.4)
+            :                   REF_IDX = 1: 1 (4.1/0.4)
+            COLOC_SPLIT = 2:
+            :...SAD > 13218: 0 (22.2/2.3)
+                SAD <= 13218:
+                :...BITS > 43: 1 (12.2)
+                    BITS <= 43:
+                    :...COST_MSM > 82973.3: 1 (13.6)
+                        COST_MSM <= 82973.3:
+                        :...MVP_IDX = 0: 0 (12.9/2.1)
+                            MVP_IDX = 1: 0 (3.4)
+                            MVP_IDX = -1:
+                            :...BITS > 23: 0 (32.4/8.1)
+                                BITS <= 23:
+                                :...BITS > 12: 1 (25.1/0.4)
+                                    BITS <= 12:
+                                    :...dQP in {1,2}: 1 (0)
+                                        dQP = 3: 1 (26.9/5.1)
+                                        dQP = 4:
+                                        :...MV_MOD_INT > 5.38516: 1 (5.4)
+                                            MV_MOD_INT <= 5.38516:
+                                            :...REF_IDX = -1: 1 (3.2)
+                                                REF_IDX = 1: 1 (3.6/0.4)
+                                                REF_IDX = 0:
+                                                :...BEST_COST <= 14996.8: 0 (17.2)
+                                                    BEST_COST > 14996.8:
+                                                    :...FME = 1: 0 (0)
+                                                        FME = 2: 1 (8.7)
+                                                        FME = 0: [S1]
+
+SubTree [S1]
+
+RATIO_BEST-MSM <= 1.00517: 1 (28.7/12.5)
+RATIO_BEST-MSM > 1.00517: 0 (18.6)
+
+-----  Trial 5:  -----
+
+Decision tree:
+
+COST_2Nx2N > 156709: 1 (72.7)
+COST_2Nx2N <= 156709:
+:...BITS > 350:
+    :...DISTORTION <= 13309: 0 (5/0.3)
+    :   DISTORTION > 13309: 1 (52.9/3.1)
+    BITS <= 350:
+    :...RATIO_BEST-MSM <= 0.688002: 1 (55.5/8.5)
+        RATIO_BEST-MSM > 0.688002:
+        :...PRED_MODE = 3:
+            :...NON-Z-COEFF <= 2: 0 (32.9/14)
+            :   NON-Z-COEFF > 2:
+            :   :...RATIO_BEST_2Nx2N <= 0.931485: 0 (87/7.1)
+            :       RATIO_BEST_2Nx2N > 0.931485: 1 (4.4)
+            PRED_MODE = 0:
+            :...AVG_NEIGH_DEPTH <= 1.09499:
+            :   :...NON-Z-COEFF > 1: 0 (68/12.2)
+            :   :   NON-Z-COEFF <= 1:
+            :   :   :...SSE > 16273: 0 (33.6)
+            :   :       SSE <= 16273:
+            :   :       :...SSE <= 9318: 0 (44.3/6.3)
+            :   :           SSE > 9318: 1 (18.7/2.7)
+            :   AVG_NEIGH_DEPTH > 1.09499:
+            :   :...RATIO_BEST-MSM <= 1.00447: 1 (17.6)
+            :       RATIO_BEST-MSM > 1.00447:
+            :       :...REF_IDX = -1: 1 (2.5)
+            :           REF_IDX = 1: 1 (2.5)
+            :           REF_IDX = 0:
+            :           :...MV_MOD_INT <= 5.38516: 0 (25.2/5.6)
+            :               MV_MOD_INT > 5.38516: 1 (8.6/1.2)
+            PRED_MODE = 1:
+            :...COST_2Nx2N > 68126.4: 1 (11)
+            :   COST_2Nx2N <= 68126.4:
+            :   :...MVP_IDX = 0: 0 (22/5.6)
+            :       MVP_IDX = 1: 0 (9.6/1.3)
+            :       MVP_IDX = -1:
+            :       :...BITS > 22: 0 (9.1)
+            :           BITS <= 22:
+            :           :...dQP = 2: 0 (0)
+            :               dQP = 1: 1 (1.7)
+            :               dQP = 3: 1 (5.7)
+            :               dQP = 4: 0 (36.4/13.1)
+            PRED_MODE = 2:
+            :...RATIO_BEST-MSM <= 0.910523: 1 (38.5/2.6)
+                RATIO_BEST-MSM > 0.910523:
+                :...AVG_NEIGH_DEPTH > 1.91839: 0 (24.8/4)
+                    AVG_NEIGH_DEPTH <= 1.91839:
+                    :...INTER_DIR = 0: 1 (0)
+                        INTER_DIR = 1: 0 (13.3/6.2)
+                        INTER_DIR = 2: 0 (18.4/4.1)
+                        INTER_DIR = 3:
+                        :...PU_SIZE = 2: 0 (22.8/9.1)
+                            PU_SIZE = 4: 0 (5.9/1.8)
+                            PU_SIZE = 5: 0 (5.9)
+                            PU_SIZE = 6: 1 (14.8/6.2)
+                            PU_SIZE = 7: 1 (11.3)
+                            PU_SIZE = 1:
+                            :...RATIO_2Nx2N-MSM <= 1.05469: 1 (30.2/4.5)
+                            :   RATIO_2Nx2N-MSM > 1.05469: 0 (20.7/0.6)
+                            PU_SIZE = 0:
+                            :...FME = 1: 0 (8.7/4)
+                                FME = 2: 1 (19.9/0.3)
+                                FME = 0:
+                                :...BITS <= 33: 0 (6.4)
+                                    BITS > 33:
+                                    :...BITS > 265: 0 (11.7/1.8)
+                                        BITS <= 265:
+                                        :...BITS > 138: 1 (11)
+                                            BITS <= 138:
+                                            :...BITS > 135: 0 (4.7)
+                                                BITS <= 135: [S1]
+
+SubTree [S1]
+
+RATIO_BEST_2Nx2N <= 0.808279: 0 (2.4)
+RATIO_BEST_2Nx2N > 0.808279: 1 (62/15.8)
+
+-----  Trial 6:  -----
+
+Decision tree:
+
+BITS > 553: 1 (54.4)
+BITS <= 553:
+:...DISTORTION > 75688:
+    :...BITS <= 3: 0 (4.4/0.2)
+    :   BITS > 3: 1 (79.8/6.8)
+    DISTORTION <= 75688:
+    :...MVD_MOD_FRAC in {0.5,0.901388,1.06066}: 0 (0)
+        MVD_MOD_FRAC = 0.25: 1 (15.5/2.5)
+        MVD_MOD_FRAC = 0.353553: 1 (6.1/2.1)
+        MVD_MOD_FRAC = 0.559017: 0 (8.7/3.9)
+        MVD_MOD_FRAC = 0.707107: 1 (0.7)
+        MVD_MOD_FRAC = 0.75: 0 (12.4/2.8)
+        MVD_MOD_FRAC = 0.790569: 1 (4.5)
+        MVD_MOD_FRAC = 0:
+        :...COST_MSM <= 6226.63: 0 (32.9/2.3)
+            COST_MSM > 6226.63:
+            :...PU_SIZE = 4: 1 (22.8/3.3)
+                PU_SIZE = 5: 0 (16.2/7)
+                PU_SIZE = 6: 0 (29.5/13.8)
+                PU_SIZE = 7: 1 (28.7/11.5)
+                PU_SIZE = 1:
+                :...MVD_MOD_INT > 1.41421: 0 (5.2/0.5)
+                :   MVD_MOD_INT <= 1.41421:
+                :   :...SAD <= 20256: 1 (60.2/13.1)
+                :       SAD > 20256: 0 (8.3/2)
+                PU_SIZE = 2:
+                :...AVG_NEIGH_DEPTH <= 0.778799: 0 (19.3/5.3)
+                :   AVG_NEIGH_DEPTH > 0.778799:
+                :   :...RATIO_2Nx2N-MSM <= 1.06517: 1 (32.6)
+                :       RATIO_2Nx2N-MSM > 1.06517: 0 (12.5/5.1)
+                PU_SIZE = 0:
+                :...MV_MOD_FRAC = 0.901388: 0 (0)
+                    MV_MOD_FRAC = 0.25: 1 (6.9/3.2)
+                    MV_MOD_FRAC = 0.353553: 1 (9.9/1.3)
+                    MV_MOD_FRAC = 0.5: 1 (12.1/5)
+                    MV_MOD_FRAC = 0.559017: 0 (15.8/3.9)
+                    MV_MOD_FRAC = 0.707107: 0 (1.4)
+                    MV_MOD_FRAC = 0.75: 1 (7.8)
+                    MV_MOD_FRAC = 0.790569: 0 (9.1/2.9)
+                    MV_MOD_FRAC = 1.06066: 1 (2.9)
+                    MV_MOD_FRAC = 0:
+                    :...RATIO_BEST_2Nx2N <= 0.717734:
+                        :...RATIO_BEST-MSM <= 0.416087: 1 (3.3)
+                        :   RATIO_BEST-MSM > 0.416087:
+                        :   :...RATIO_2Nx2N-MSM <= 1.68667: 0 (43.3/1.2)
+                        :       RATIO_2Nx2N-MSM > 1.68667: 1 (4.7/1.2)
+                        RATIO_BEST_2Nx2N > 0.717734:
+                        :...BITS > 63:
+                            :...SAD <= 8007: 1 (15.5)
+                            :   SAD > 8007:
+                            :   :...INTER_DIR = 1: 1 (7.6)
+                            :       INTER_DIR = 2: 1 (6.9/1.3)
+                            :       INTER_DIR = 0:
+                            :       :...DISTORTION > 33816: 0 (18.9/1.2)
+                            :       :   DISTORTION <= 33816:
+                            :       :   :...BITS > 327: 1 (12.5)
+                            :       :       BITS <= 327:
+                            :       :       :...dQP = 2: 1 (0)
+                            :       :           dQP = 1: 1 (27.2/11.9)
+                            :       :           dQP = 3: 0 (9.7)
+                            :       :           dQP = 4: 1 (30.1/9.2)
+                            :       INTER_DIR = 3:
+                            :       :...NON-Z-COEFF > 14: 1 (16.7)
+                            :           NON-Z-COEFF <= 14:
+                            :           :...NON-Z-COEFF > 7: 0 (3.2)
+                            :               NON-Z-COEFF <= 7:
+                            :               :...NON-Z-COEFF <= 4: 0 (39.5/14.7)
+                            :                   NON-Z-COEFF > 4: 1 (3.7)
+                            BITS <= 63:
+                            :...INTER_DIR = 0: 0 (3.9)
+                                INTER_DIR = 2: 0 (15.4/3)
+                                INTER_DIR = 1:
+                                :...NON-Z-COEFF <= 1: 0 (13.6/2)
+                                :   NON-Z-COEFF > 1: 1 (29.5/6.4)
+                                INTER_DIR = 3:
+                                :...COLOC_SPLIT = 0: 0 (15.1)
+                                    COLOC_SPLIT = 1: 0 (42.4/4.9)
+                                    COLOC_SPLIT = 2:
+                                    :...SAD > 9416: 0 (14.5)
+                                        SAD <= 9416:
+                                        :...SSE > 28386: 1 (11.8)
+                                            SSE <= 28386:
+                                            :...TU_DEPTH = 2: 0 (0)
+                                                TU_DEPTH = 1: 1 (3.5/1)
+                                                TU_DEPTH = 0:
+                                                :...DISTORTION > 36142: 1 (2.2)
+                                                    DISTORTION <= 36142:
+                                                    :...SAD <= 3159: 1 (12.1)
+                                                        SAD > 3159: 0 (32.9/1.1)
+
+-----  Trial 7:  -----
+
+Decision tree:
+
+DISTORTION > 82626: 1 (74.5)
+DISTORTION <= 82626:
+:...AVG_NEIGH_DEPTH <= 0.659091:
+    :...NON-Z-COEFF > 43: 1 (17/5)
+    :   NON-Z-COEFF <= 43:
+    :   :...PU_SIZE = 1: 0 (16.5/7.3)
+    :       PU_SIZE = 2: 0 (8.2)
+    :       PU_SIZE = 4: 1 (4.4)
+    :       PU_SIZE = 5: 0 (3.7)
+    :       PU_SIZE = 6: 0 (2.2)
+    :       PU_SIZE = 7: 1 (3.2)
+    :       PU_SIZE = 0:
+    :       :...BITS <= 252: 0 (166.8/36.8)
+    :           BITS > 252: 1 (3.5)
+    AVG_NEIGH_DEPTH > 0.659091:
+    :...COST_MSM <= 9993.63:
+        :...TU_DEPTH = 2: 1 (11.3)
+        :   TU_DEPTH = 0:
+        :   :...AVG_NEIGH_DEPTH <= 0.912281: 1 (10.3/2.8)
+        :   :   AVG_NEIGH_DEPTH > 0.912281: 0 (23.7)
+        :   TU_DEPTH = 1:
+        :   :...BITS <= 37: 1 (2.7)
+        :       BITS > 37: 0 (39.4/5.3)
+        COST_MSM > 9993.63:
+        :...dQP = 2: 1 (0)
+            dQP = 1:
+            :...BITS <= 43: 0 (10.9/1.3)
+            :   BITS > 43:
+            :   :...COLOC_SPLIT = 2: 1 (0)
+            :       COLOC_SPLIT = 0: 0 (10.9/3.7)
+            :       COLOC_SPLIT = 1: 1 (99/6.3)
+            dQP = 3:
+            :...SSE <= 12425: 1 (15.9/0.8)
+            :   SSE > 12425:
+            :   :...COST_MSM <= 32970.9: 0 (37/6)
+            :       COST_MSM > 32970.9: 1 (85.1/17.5)
+            dQP = 4:
+            :...PU_SIZE = 2: 1 (29.2/10.1)
+                PU_SIZE = 4: 0 (11.6/5.2)
+                PU_SIZE = 5: 1 (10.8)
+                PU_SIZE = 6: 1 (21.7/10.2)
+                PU_SIZE = 7: 0 (13.2/4.5)
+                PU_SIZE = 1:
+                :...INTER_DIR = 0: 1 (0)
+                :   INTER_DIR = 1: 0 (7.9)
+                :   INTER_DIR = 2: 0 (4.1)
+                :   INTER_DIR = 3: 1 (42.4/11.8)
+                PU_SIZE = 0:
+                :...SSE > 277731: 0 (12.5)
+                    SSE <= 277731:
+                    :...BITS > 70:
+                        :...REF_IDX = -1: 1 (18.1/6.9)
+                        :   REF_IDX = 0: 1 (30.4)
+                        :   REF_IDX = 1: 0 (2.6)
+                        BITS <= 70:
+                        :...AVG_NEIGH_DEPTH <= 1.08547:
+                            :...COST_MSM <= 82973.3: 0 (39.7/4.6)
+                            :   COST_MSM > 82973.3: 1 (2.7)
+                            AVG_NEIGH_DEPTH > 1.08547:
+                            :...RATIO_2Nx2N-MSM <= 1.10102: 0 (36.2/14)
+                                RATIO_2Nx2N-MSM > 1.10102: 1 (29.8/2.9)
+
+-----  Trial 8:  -----
+
+Decision tree:
+
+DISTORTION > 82626: 1 (59.9)
+DISTORTION <= 82626:
+:...RATIO_BEST_2Nx2N > 1: 1 (34.1/1.8)
+    RATIO_BEST_2Nx2N <= 1:
+    :...BITS <= 43:
+        :...MVD_MOD_FRAC in {0.5,0.707107,0.790569,0.901388,
+        :   :                1.06066}: 0 (0)
+        :   MVD_MOD_FRAC = 0.25: 0 (3.3)
+        :   MVD_MOD_FRAC = 0.353553: 0 (2.9)
+        :   MVD_MOD_FRAC = 0.559017: 0 (5.7)
+        :   MVD_MOD_FRAC = 0.75: 0 (2.1)
+        :   MVD_MOD_FRAC = 0:
+        :   :...BITS > 35: 0 (45.7/6.1)
+        :       BITS <= 35:
+        :       :...RATIO_BEST-MSM <= 0.796822:
+        :           :...RATIO_BEST-MSM <= 0.380561: 0 (6.4/1.9)
+        :           :   RATIO_BEST-MSM > 0.380561: 1 (28.5/0.6)
+        :           RATIO_BEST-MSM > 0.796822:
+        :           :...AVG_NEIGH_DEPTH > 1.09499:
+        :               :...RATIO_2Nx2N-MSM <= 1.20489: 1 (57.7/8.6)
+        :               :   RATIO_2Nx2N-MSM > 1.20489: 0 (20.4/7.1)
+        :               AVG_NEIGH_DEPTH <= 1.09499:
+        :               :...RATIO_BEST-MSM > 1.01044: 0 (34)
+        :                   RATIO_BEST-MSM <= 1.01044:
+        :                   :...RATIO_BEST-MSM > 1.00819: 1 (15.2)
+        :                       RATIO_BEST-MSM <= 1.00819:
+        :                       :...COLOC_SPLIT = 0: 0 (32.9/4.7)
+        :                           COLOC_SPLIT = 1: 0 (46)
+        :                           COLOC_SPLIT = 2:
+        :                           :...dQP in {1,2}: 0 (0)
+        :                               dQP = 3: 1 (20.8/2.7)
+        :                               dQP = 4:
+        :                               :...AVG_NEIGH_DEPTH <= 0.5: 1 (13.8/3.8)
+        :                                   AVG_NEIGH_DEPTH > 0.5:
+        :                                   :...MV_MOD_INT <= 2.23607: 0 (46.3/3.1)
+        :                                       MV_MOD_INT > 2.23607: 1 (5.1/1.6)
+        BITS > 43:
+        :...RATIO_2Nx2N-MSM <= 0.931508: 1 (27.4)
+            RATIO_2Nx2N-MSM > 0.931508:
+            :...MVD_MOD_FRAC = 0.901388: 1 (0)
+                MVD_MOD_FRAC = 0.25: 1 (4)
+                MVD_MOD_FRAC = 0.353553: 1 (2.6)
+                MVD_MOD_FRAC = 0.5: 1 (0.2)
+                MVD_MOD_FRAC = 0.559017: 1 (5.3)
+                MVD_MOD_FRAC = 0.707107: 1 (0.3)
+                MVD_MOD_FRAC = 0.75: 1 (8.5/4.1)
+                MVD_MOD_FRAC = 0.790569: 1 (2.3)
+                MVD_MOD_FRAC = 1.06066: 1 (2)
+                MVD_MOD_FRAC = 0:
+                :...RATIO_BEST-MSM > 0.985247:
+                    :...RATIO_BEST-MSM <= 0.994366: 1 (35.6)
+                    :   RATIO_BEST-MSM > 0.994366:
+                    :   :...SSE <= 69529: 1 (75/12.6)
+                    :       SSE > 69529:
+                    :       :...SSE <= 78293: 0 (15.5/0.2)
+                    :           SSE > 78293:
+                    :           :...AVG_NEIGH_DEPTH > 1.65928: 0 (6.2/0.2)
+                    :               AVG_NEIGH_DEPTH <= 1.65928:
+                    :               :...SSE <= 275198: 1 (55/13.6)
+                    :                   SSE > 275198: 0 (4.4)
+                    RATIO_BEST-MSM <= 0.985247:
+                    :...BITS <= 57: 0 (16)
+                        BITS > 57:
+                        :...RATIO_BEST_2Nx2N > 0.955395: 1 (19.6)
+                            RATIO_BEST_2Nx2N <= 0.955395:
+                            :...TU_DEPTH = 0: 0 (0)
+                                TU_DEPTH = 2: 1 (27.7/8.3)
+                                TU_DEPTH = 1:
+                                :...DISTORTION <= 4625: 0 (18.8)
+                                    DISTORTION > 4625:
+                                    :...MV_MOD_FRAC in {0.353553,0.5,0.559017,
+                                        :               0.707107,0.901388,
+                                        :               1.06066}: 0 (0)
+                                        MV_MOD_FRAC = 0.25: 1 (0.2)
+                                        MV_MOD_FRAC = 0.75: 1 (4.3)
+                                        MV_MOD_FRAC = 0.790569: 0 (6)
+                                        MV_MOD_FRAC = 0:
+                                        :...COST_2Nx2N > 52864.7:
+                                            :...AVG_NEIGH_DEPTH <= 1.75988: 0 (48.8/3.7)
+                                            :   AVG_NEIGH_DEPTH > 1.75988: 1 (2.7)
+                                            COST_2Nx2N <= 52864.7:
+                                            :...DISTORTION > 13487: 1 (35.1/4.4)
+                                                DISTORTION <= 13487:
+                                                :...COST_2Nx2N <= 13226.6: 1 (17.3/3.4)
+                                                    COST_2Nx2N > 13226.6: 0 (36.4)
+
+-----  Trial 9:  -----
+
+Decision tree:
+
+BITS > 553: 1 (47.9)
+BITS <= 553:
+:...COST_2Nx2N > 89362.9:
+    :...SAD <= 18515: 1 (57.4)
+    :   SAD > 18515:
+    :   :...RATIO_BEST_2Nx2N <= 0.924302: 0 (19.9/6.4)
+    :       RATIO_BEST_2Nx2N > 0.924302: 1 (17.3)
+    COST_2Nx2N <= 89362.9:
+    :...RATIO_BEST-MSM <= 0.68239:
+        :...MVD_MOD_INT > 2.23607: 0 (4.5/0.1)
+        :   MVD_MOD_INT <= 2.23607:
+        :   :...SAD <= 17161: 1 (46.5/4.9)
+        :       SAD > 17161: 0 (5.3)
+        RATIO_BEST-MSM > 0.68239:
+        :...MVD_MOD_FRAC in {0.5,0.901388,1.06066}: 0 (0)
+            MVD_MOD_FRAC = 0.25: 1 (14/2.6)
+            MVD_MOD_FRAC = 0.353553: 1 (5.4/2.3)
+            MVD_MOD_FRAC = 0.559017: 1 (2.1)
+            MVD_MOD_FRAC = 0.707107: 1 (0.4)
+            MVD_MOD_FRAC = 0.75: 0 (13.9/5.5)
+            MVD_MOD_FRAC = 0.790569: 1 (3.4)
+            MVD_MOD_FRAC = 0:
+            :...PRED_MODE = 0:
+                :...AVG_NEIGH_DEPTH <= 1.79843: 0 (199.8/49.7)
+                :   AVG_NEIGH_DEPTH > 1.79843: 1 (6.3)
+                PRED_MODE = 3:
+                :...AVG_NEIGH_DEPTH > 1.23214: 1 (21/6.6)
+                :   AVG_NEIGH_DEPTH <= 1.23214:
+                :   :...SAD <= 18571: 0 (48.2/1.2)
+                :       SAD > 18571:
+                :       :...RATIO_2Nx2N-MSM <= 1.15039: 1 (31.5/11.3)
+                :           RATIO_2Nx2N-MSM > 1.15039: 0 (11.9)
+                PRED_MODE = 1:
+                :...COST_2Nx2N > 68126.4: 1 (9.4)
+                :   COST_2Nx2N <= 68126.4:
+                :   :...MVP_IDX = 0: 0 (14.2)
+                :       MVP_IDX = 1: 0 (3.4)
+                :       MVP_IDX = -1:
+                :       :...BITS > 22: 0 (10.7)
+                :           BITS <= 22:
+                :           :...dQP = 2: 1 (0)
+                :               dQP = 1: 1 (2.3)
+                :               dQP = 3: 1 (4)
+                :               dQP = 4:
+                :               :...COLOC_SPLIT = 0: 0 (0.4)
+                :                   COLOC_SPLIT = 1: 0 (9.6)
+                :                   COLOC_SPLIT = 2: 1 (31.5/11.7)
+                PRED_MODE = 2:
+                :...RATIO_BEST-MSM > 1.00819: 1 (16.5)
+                    RATIO_BEST-MSM <= 1.00819:
+                    :...MV_MOD_FRAC in {0.559017,0.901388,
+                        :               1.06066}: 0 (0)
+                        MV_MOD_FRAC = 0.25: 1 (2.2)
+                        MV_MOD_FRAC = 0.353553: 1 (19.2/3.5)
+                        MV_MOD_FRAC = 0.5: 0 (13.7/1.4)
+                        MV_MOD_FRAC = 0.707107: 1 (3.5)
+                        MV_MOD_FRAC = 0.75: 0 (16.6/4.5)
+                        MV_MOD_FRAC = 0.790569: 1 (10.1/4.7)
+                        MV_MOD_FRAC = 0:
+                        :...RATIO_BEST-MSM <= 0.912111: 1 (16.7)
+                            RATIO_BEST-MSM > 0.912111:
+                            :...MV_MOD_INT > 0: 0 (22.3/2.6)
+                                MV_MOD_INT <= 0:
+                                :...MVP_IDX = 1: 0 (0)
+                                    MVP_IDX = 0: 1 (6.5)
+                                    MVP_IDX = -1:
+                                    :...BITS <= 40: 0 (22.3)
+                                        BITS > 40:
+                                        :...COST_MSM <= 19230.3: 1 (18/4)
+                                            COST_MSM > 19230.3:
+                                            :...RATIO_2Nx2N-MSM > 1.2452: 0 (6.5)
+                                                RATIO_2Nx2N-MSM <= 1.2452:
+                                                :...NON-Z-COEFF > 47: 1 (27.8/5.5)
+                                                    NON-Z-COEFF <= 47: [S1]
+
+SubTree [S1]
+
+RATIO_BEST-MSM <= 1.00095: 1 (63.6/24.4)
+RATIO_BEST-MSM > 1.00095:
+:...RATIO_BEST_2Nx2N > 0.997135: 1 (3.7)
+    RATIO_BEST_2Nx2N <= 0.997135:
+    :...RATIO_BEST-MSM <= 1.00402: 0 (37.3/1.6)
+        RATIO_BEST-MSM > 1.00402: 1 (9.7/3.8)
+
+
+Evaluation on training data (960 cases):
+
+Trial	       Decision Tree       
+-----	  -----------------------  
+	  Size      Errors   Cost  
+
+   0	    35   62( 6.5%)   0.06
+   1	    39  112(11.7%)   0.12
+   2	    32  113(11.8%)   0.12
+   3	    47  114(11.9%)   0.12
+   4	    46   73( 7.6%)   0.08
+   5	    42  110(11.5%)   0.11
+   6	    55  106(11.0%)   0.11
+   7	    37   89( 9.3%)   0.09
+   8	    46   75( 7.8%)   0.08
+   9	    46  106(11.0%)   0.11
+boost	          6( 0.6%)   0.01   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   333     3    (a): class 0
+	     3   621    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	    100%  DISTORTION
+	    100%  COST_2Nx2N
+	    100%  COST_MSM
+	    100%  AVG_NEIGH_DEPTH
+	     97%  BEST_COST
+	     91%  RATIO_BEST_2Nx2N
+	     73%  RATIO_BEST-MSM
+	     70%  dQP
+	     67%  MVD_MOD_FRAC
+	     64%  PRED_MODE
+	     64%  PU_SIZE
+	     63%  RATIO_2Nx2N-MSM
+	     62%  MVD_MOD_INT
+	     60%  PREDMV_MOD_INT
+	     56%  NON-Z-COEFF
+	     55%  SAD
+	     50%  INTER_DIR
+	     49%  TU_DEPTH
+	     48%  COLOC_SPLIT
+	     47%  MV_MOD_FRAC
+	     45%  SSE
+	     37%  MVP_IDX
+	     36%  MV_MOD_INT
+	     33%  REF_IDX
+	     19%  FME
+	     10%  PREDMV_MOD_FRAC
+	     10%  CTX_SPLIT
+
+
+Time: 0.1 secs

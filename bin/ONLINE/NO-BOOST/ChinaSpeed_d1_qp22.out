@@ -1,0 +1,159 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 09:33:53 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/ChinaSpeed_d1_qp22'
+
+Read 2932 cases (28 attributes) from ./ONLINE/NO-BOOST/ChinaSpeed_d1_qp22.data
+
+Decision tree:
+
+TU_DEPTH = 2: 1 (658/12)
+TU_DEPTH = 1:
+:...COST_MSM > 5142.33: 1 (441/14)
+:   COST_MSM <= 5142.33:
+:   :...BITS > 138: 1 (26)
+:       BITS <= 138:
+:       :...MV_MOD_FRAC in {0.353553,0.901388}: 1 (0)
+:           MV_MOD_FRAC in {0.25,0.5,1.06066}: 0 (9)
+:           MV_MOD_FRAC in {0.559017,0.707107,0.75,0.790569}: 1 (9/2)
+:           MV_MOD_FRAC = 0:
+:           :...dQP = 2: 1 (0)
+:               dQP = 3:
+:               :...AVG_NEIGH_DEPTH <= 0.677945: 1 (4)
+:               :   AVG_NEIGH_DEPTH > 0.677945: 0 (21/5)
+:               dQP = 4:
+:               :...RATIO_2Nx2N-MSM <= 1.06118: 1 (2)
+:               :   RATIO_2Nx2N-MSM > 1.06118: 0 (10)
+:               dQP = 1:
+:               :...REF_IDX = -1: 0 (2)
+:                   REF_IDX = 0: 1 (18/2)
+:                   REF_IDX = 1:
+:                   :...COST_2Nx2N <= 2058.97: 0 (6/1)
+:                       COST_2Nx2N > 2058.97: 1 (6)
+TU_DEPTH = 0:
+:...DISTORTION <= 6579:
+    :...PU_SIZE = 0: 0 (1143/98)
+    :   PU_SIZE = 1:
+    :   :...PRED_MODE in {0,3}: 1 (0)
+    :   :   PRED_MODE = 1: 1 (45/15)
+    :   :   PRED_MODE = 2: 0 (25/9)
+    :   PU_SIZE = 2:
+    :   :...COST_MSM <= 2263.3: 0 (9)
+    :   :   COST_MSM > 2263.3:
+    :   :   :...MV_MOD_INT <= 0: 0 (19/5)
+    :   :       MV_MOD_INT > 0: 1 (23/3)
+    :   PU_SIZE = 4:
+    :   :...PREDMV_MOD_FRAC in {0.559017,1.06066}: 0 (0)
+    :   :   PREDMV_MOD_FRAC in {0,0.790569}: 1 (20/7)
+    :   :   PREDMV_MOD_FRAC in {0.353553,0.5,0.707107,0.75,
+    :   :   :                   0.901388}: 0 (9/1)
+    :   :   PREDMV_MOD_FRAC = 0.25:
+    :   :   :...RATIO_BEST_2Nx2N <= 0.956061: 0 (3)
+    :   :       RATIO_BEST_2Nx2N > 0.956061: 1 (2)
+    :   PU_SIZE = 5:
+    :   :...dQP = 2: 0 (0)
+    :   :   dQP in {1,3}: 1 (16/5)
+    :   :   dQP = 4:
+    :   :   :...SAD <= 810: 1 (4/1)
+    :   :       SAD > 810: 0 (14)
+    :   PU_SIZE = 7:
+    :   :...dQP = 2: 0 (0)
+    :   :   dQP in {1,3}: 1 (8/1)
+    :   :   dQP = 4:
+    :   :   :...MVP_IDX = 1: 0 (0)
+    :   :       MVP_IDX = -1: 0 (10/1)
+    :   :       MVP_IDX = 0: 1 (2)
+    :   PU_SIZE = 6:
+    :   :...RATIO_BEST_2Nx2N > 0.829771: 0 (10)
+    :       RATIO_BEST_2Nx2N <= 0.829771:
+    :       :...DISTORTION > 2647: 1 (4)
+    :           DISTORTION <= 2647:
+    :           :...CTX_SPLIT in {0,1,6}: 0 (0)
+    :               CTX_SPLIT in {2,3}: 0 (6/1)
+    :               CTX_SPLIT in {4,5}: 1 (2)
+    DISTORTION > 6579:
+    :...COLOC_SPLIT = 0:
+        :...DISTORTION <= 13534: 0 (76/15)
+        :   DISTORTION > 13534: 1 (5)
+        COLOC_SPLIT = 1:
+        :...MVD_MOD_FRAC in {0.25,0.559017,0.901388,1.06066}: 0 (0)
+        :   MVD_MOD_FRAC = 0.353553: 0 (1)
+        :   MVD_MOD_FRAC in {0.5,0.707107,0.75,0.790569}: 1 (6/1)
+        :   MVD_MOD_FRAC = 0:
+        :   :...MV_MOD_FRAC in {0.707107,1.06066}: 0 (0)
+        :       MV_MOD_FRAC in {0.25,0.353553,0.5,0.790569,
+        :       :               0.901388}: 0 (7)
+        :       MV_MOD_FRAC = 0.559017: 1 (2)
+        :       MV_MOD_FRAC = 0.75:
+        :       :...NON-Z-COEFF <= 6: 0 (5)
+        :       :   NON-Z-COEFF > 6: 1 (4)
+        :       MV_MOD_FRAC = 0:
+        :       :...PU_SIZE = 7: 0 (0)
+        :           PU_SIZE in {2,6}: 1 (3)
+        :           PU_SIZE = 1:
+        :           :...BITS <= 193: 1 (3)
+        :           :   BITS > 193: 0 (3)
+        :           PU_SIZE = 4:
+        :           :...BITS <= 138: 0 (2)
+        :           :   BITS > 138: 1 (2)
+        :           PU_SIZE = 5:
+        :           :...SAD <= 2911: 1 (3)
+        :           :   SAD > 2911: 0 (2)
+        :           PU_SIZE = 0:
+        :           :...dQP = 2: 0 (0)
+        :               dQP = 1: 1 (2)
+        :               dQP = 4: 0 (28/4)
+        :               dQP = 3:
+        :               :...NON-Z-COEFF <= 8: 0 (4)
+        :                   NON-Z-COEFF > 8: 1 (2)
+        COLOC_SPLIT = 2:
+        :...SSE > 17558: 1 (39)
+            SSE <= 17558:
+            :...SAD <= 2604: 1 (109/20)
+                SAD > 2604:
+                :...DISTORTION <= 9019: 0 (10)
+                    DISTORTION > 9019:
+                    :...AVG_NEIGH_DEPTH <= 1.45641: 0 (5)
+                        AVG_NEIGH_DEPTH > 1.45641:
+                        :...MV_MOD_INT <= 21.2132: 1 (20/4)
+                            MV_MOD_INT > 21.2132: 0 (3)
+
+
+Evaluation on training data (2932 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    58  227( 7.7%)   0.08   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	  1302    87    (a): class 0
+	   140  1403    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  TU_DEPTH
+	     59%  DISTORTION
+	     49%  PU_SIZE
+	     21%  COST_MSM
+	     12%  COLOC_SPLIT
+	      6%  SSE
+	      6%  SAD
+	      5%  dQP
+	      5%  MV_MOD_FRAC
+	      4%  BITS
+	      3%  MVD_MOD_FRAC
+	      2%  PRED_MODE
+	      2%  MV_MOD_INT
+	      2%  AVG_NEIGH_DEPTH
+	      1%  PREDMV_MOD_FRAC
+	      1%  REF_IDX
+
+
+Time: 0.0 secs

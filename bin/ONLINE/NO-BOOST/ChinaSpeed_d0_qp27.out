@@ -1,0 +1,114 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 09:33:26 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/ChinaSpeed_d0_qp27'
+
+Read 960 cases (28 attributes) from ./ONLINE/NO-BOOST/ChinaSpeed_d0_qp27.data
+
+Decision tree:
+
+AVG_NEIGH_DEPTH > 0.878788:
+:...COST_MSM > 89243.8: 1 (397/5)
+:   COST_MSM <= 89243.8:
+:   :...BITS <= 57:
+:       :...COLOC_SPLIT = 0:
+:       :   :...NON-Z-COEFF <= 1: 0 (4)
+:       :   :   NON-Z-COEFF > 1: 1 (3)
+:       :   COLOC_SPLIT = 1:
+:       :   :...MVP_IDX in {-1,1}: 0 (31/3)
+:       :   :   MVP_IDX = 0: 1 (2)
+:       :   COLOC_SPLIT = 2:
+:       :   :...SAD > 11864: 0 (6)
+:       :       SAD <= 11864:
+:       :       :...DISTORTION <= 9526: 0 (13/2)
+:       :           DISTORTION > 9526: 1 (51/15)
+:       BITS > 57:
+:       :...TU_DEPTH = 0: 1 (0)
+:           TU_DEPTH = 2: 1 (34/1)
+:           TU_DEPTH = 1:
+:           :...DISTORTION > 7195: 1 (107/17)
+:               DISTORTION <= 7195:
+:               :...SAD <= 3563: 1 (3)
+:                   SAD > 3563: 0 (11/2)
+AVG_NEIGH_DEPTH <= 0.878788:
+:...NON-Z-COEFF > 31:
+    :...BITS <= 39: 0 (8/1)
+    :   BITS > 39: 1 (16/2)
+    NON-Z-COEFF <= 31:
+    :...PU_SIZE in {4,7}: 1 (5/1)
+        PU_SIZE = 5: 0 (2/1)
+        PU_SIZE = 2:
+        :...AVG_NEIGH_DEPTH <= 0.778799: 0 (12)
+        :   AVG_NEIGH_DEPTH > 0.778799: 1 (2)
+        PU_SIZE = 6:
+        :...AVG_NEIGH_DEPTH <= 0.6: 0 (5)
+        :   AVG_NEIGH_DEPTH > 0.6: 1 (3)
+        PU_SIZE = 1:
+        :...MVD_MOD_INT > 1.41421: 0 (2)
+        :   MVD_MOD_INT <= 1.41421:
+        :   :...FME in {0,1}: 1 (8/1)
+        :       FME = 2: 0 (4/1)
+        PU_SIZE = 0:
+        :...dQP = 2: 0 (0)
+            dQP = 1:
+            :...COLOC_SPLIT = 2: 0 (0)
+            :   COLOC_SPLIT = 0: 0 (10/1)
+            :   COLOC_SPLIT = 1:
+            :   :...AVG_NEIGH_DEPTH <= 0.754735: 1 (3)
+            :       AVG_NEIGH_DEPTH > 0.754735: 0 (2)
+            dQP = 3:
+            :...PRED_MODE in {1,3}: 0 (10)
+            :   PRED_MODE = 2: 1 (5/1)
+            :   PRED_MODE = 0:
+            :   :...AVG_NEIGH_DEPTH <= 0.75641: 0 (12)
+            :       AVG_NEIGH_DEPTH > 0.75641:
+            :       :...COLOC_SPLIT in {0,2}: 1 (5)
+            :           COLOC_SPLIT = 1: 0 (2)
+            dQP = 4:
+            :...BITS <= 70: 0 (159/5)
+                BITS > 70:
+                :...SSE > 160628: 1 (5/1)
+                    SSE <= 160628:
+                    :...REF_IDX = 1: 0 (0)
+                        REF_IDX = -1: 0 (15/1)
+                        REF_IDX = 0: 1 (3/1)
+
+
+Evaluation on training data (960 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    35   62( 6.5%)   0.06   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   291    45    (a): class 0
+	    17   607    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  AVG_NEIGH_DEPTH
+	     69%  COST_MSM
+	     49%  BITS
+	     32%  NON-Z-COEFF
+	     29%  PU_SIZE
+	     24%  dQP
+	     19%  DISTORTION
+	     16%  TU_DEPTH
+	     14%  COLOC_SPLIT
+	      9%  SAD
+	      4%  PRED_MODE
+	      3%  MVP_IDX
+	      2%  SSE
+	      2%  REF_IDX
+	      1%  MVD_MOD_INT
+	      1%  FME
+
+
+Time: 0.0 secs

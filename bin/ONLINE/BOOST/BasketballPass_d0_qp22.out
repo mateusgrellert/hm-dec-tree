@@ -1,0 +1,171 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 08:53:05 2017
+-------------------------------
+
+    Options:
+	Boosted classifiers
+	Application `./ONLINE/BOOST/BasketballPass_d0_qp22'
+
+Read 90 cases (28 attributes) from ./ONLINE/BOOST/BasketballPass_d0_qp22.data
+
+-----  Trial 0:  -----
+
+Decision tree:
+
+BITS > 7: 1 (54/1)
+BITS <= 7:
+:...dQP = 2: 0 (0)
+    dQP = 1: 1 (5/1)
+    dQP in {3,4}: 0 (31)
+
+-----  Trial 1:  -----
+
+Decision tree:
+
+COST_2Nx2N > 21640.5: 1 (37.8)
+COST_2Nx2N <= 21640.5:
+:...INTER_DIR in {0,2}: 0 (0)
+    INTER_DIR = 1: 1 (2.3)
+    INTER_DIR = 3: 0 (49.9/3)
+
+-----  Trial 2:  -----
+
+Decision tree:
+
+AVG_NEIGH_DEPTH <= 0.984285: 0 (21.5)
+AVG_NEIGH_DEPTH > 0.984285:
+:...RATIO_BEST_2Nx2N <= 0.997209: 1 (58.4/5.2)
+    RATIO_BEST_2Nx2N > 0.997209: 0 (10.1/1.1)
+
+-----  Trial 3:  -----
+
+Decision tree:
+
+RATIO_BEST-MSM <= 0.988644: 1 (27.2)
+RATIO_BEST-MSM > 0.988644:
+:...FME = 1: 0 (0)
+    FME = 2: 1 (4.6)
+    FME = 0:
+    :...TU_DEPTH = 2: 0 (0)
+        TU_DEPTH = 0: 0 (54.1/9.7)
+        TU_DEPTH = 1: 1 (4.1)
+
+-----  Trial 4:  -----
+
+Decision tree:
+
+AVG_NEIGH_DEPTH <= 1.15445: 0 (21.6/1.4)
+AVG_NEIGH_DEPTH > 1.15445:
+:...RATIO_BEST-MSM > 1.0012: 0 (5.5)
+    RATIO_BEST-MSM <= 1.0012:
+    :...PRED_MODE = 1: 0 (10.3/5)
+        PRED_MODE = 2: 1 (17.4)
+        PRED_MODE = 3: 1 (0.7)
+        PRED_MODE = 0:
+        :...NON-Z-COEFF <= 18: 1 (30.9)
+            NON-Z-COEFF > 18: 0 (3.6)
+
+-----  Trial 5:  -----
+
+Decision tree:
+
+AVG_NEIGH_DEPTH <= 0.984285: 0 (9.9)
+AVG_NEIGH_DEPTH > 0.984285:
+:...RATIO_BEST-MSM <= 1.0012: 1 (73.1/9.7)
+    RATIO_BEST-MSM > 1.0012: 0 (7)
+
+-----  Trial 6:  -----
+
+Decision tree:
+
+BEST_COST > 19332.2: 1 (37.2/1.3)
+BEST_COST <= 19332.2:
+:...INTER_DIR in {0,2}: 0 (0)
+    INTER_DIR = 1: 1 (5.1)
+    INTER_DIR = 3:
+    :...FME = 1: 0 (0)
+        FME = 0: 0 (45.6/6.3)
+        FME = 2: 1 (2.2)
+
+-----  Trial 7:  -----
+
+Decision tree:
+
+RATIO_BEST-MSM <= 0.988644: 1 (22.4)
+RATIO_BEST-MSM > 0.988644:
+:...dQP = 2: 0 (0)
+    dQP = 3: 0 (9.3/0.2)
+    dQP = 4: 0 (26.9/0.3)
+    dQP = 1:
+    :...PU_SIZE in {1,4,5,6,7}: 1 (0)
+        PU_SIZE = 0: 1 (25.5/2.5)
+        PU_SIZE = 2: 0 (5.9)
+
+-----  Trial 8:  -----
+
+Decision tree:
+
+COST_2Nx2N > 21640.5: 1 (30.6)
+COST_2Nx2N <= 21640.5:
+:...AVG_NEIGH_DEPTH <= 1.15445: 0 (27.1)
+    AVG_NEIGH_DEPTH > 1.15445:
+    :...NON-Z-COEFF <= 9: 1 (25.2/5.1)
+        NON-Z-COEFF > 9: 0 (7.1)
+
+-----  Trial 9:  -----
+
+Decision tree:
+
+COST_2Nx2N > 21640.5: 1 (23.4)
+COST_2Nx2N <= 21640.5:
+:...FME = 1: 0 (0)
+    FME = 2: 1 (3)
+    FME = 0:
+    :...INTER_DIR in {0,2}: 0 (0)
+        INTER_DIR = 1: 1 (2.3)
+        INTER_DIR = 3: 0 (61.3/10.1)
+
+
+Evaluation on training data (90 cases):
+
+Trial	       Decision Tree       
+-----	  -----------------------  
+	  Size      Errors   Cost  
+
+   0	     3    2( 2.2%)   0.02
+   1	     3    4( 4.4%)   0.04
+   2	     3   11(12.2%)   0.12
+   3	     4    3( 3.3%)   0.03
+   4	     7    9(10.0%)   0.10
+   5	     3    5( 5.6%)   0.06
+   6	     4    3( 3.3%)   0.03
+   7	     5    4( 4.4%)   0.04
+   8	     4    2( 2.2%)   0.02
+   9	     4    2( 2.2%)   0.02
+boost	          0( 0.0%)   0.00   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	    33          (a): class 0
+	          57    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	    100%  BEST_COST
+	    100%  COST_2Nx2N
+	    100%  RATIO_BEST-MSM
+	    100%  AVG_NEIGH_DEPTH
+	     74%  RATIO_BEST_2Nx2N
+	     62%  PRED_MODE
+	     48%  FME
+	     47%  dQP
+	     46%  TU_DEPTH
+	     44%  INTER_DIR
+	     14%  NON-Z-COEFF
+	      9%  PU_SIZE
+
+
+Time: 0.0 secs

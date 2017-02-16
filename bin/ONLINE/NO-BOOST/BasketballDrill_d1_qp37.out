@@ -1,0 +1,75 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 11:14:28 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/BasketballDrill_d1_qp37'
+
+Read 632 cases (28 attributes) from ./ONLINE/NO-BOOST/BasketballDrill_d1_qp37.data
+
+Decision tree:
+
+BITS > 61: 1 (117/14)
+BITS <= 61:
+:...COST_MSM <= 91954.6: 0 (292/9)
+    COST_MSM > 91954.6:
+    :...COST_2Nx2N > 338712:
+        :...BEST_COST <= 388661: 1 (17/2)
+        :   BEST_COST > 388661: 0 (3)
+        COST_2Nx2N <= 338712:
+        :...CTX_SPLIT = 6: 0 (0)
+            CTX_SPLIT = 0: 0 (46/3)
+            CTX_SPLIT = 5: 1 (3/1)
+            CTX_SPLIT = 1:
+            :...RATIO_2Nx2N-MSM <= 1.56825: 0 (67/12)
+            :   RATIO_2Nx2N-MSM > 1.56825: 1 (2)
+            CTX_SPLIT = 2:
+            :...COLOC_SPLIT = 2: 0 (34/8)
+            :   COLOC_SPLIT = 0:
+            :   :...BITS <= 15: 0 (2)
+            :   :   BITS > 15: 1 (2)
+            :   COLOC_SPLIT = 1:
+            :   :...BITS <= 21: 1 (8/1)
+            :       BITS > 21: 0 (3)
+            CTX_SPLIT = 3:
+            :...FME in {0,2}: 0 (17/3)
+            :   FME = 1:
+            :   :...DISTORTION <= 102033: 0 (2)
+            :       DISTORTION > 102033: 1 (4)
+            CTX_SPLIT = 4:
+            :...FME = 0: 1 (2)
+                FME = 1: 0 (4)
+                FME = 2:
+                :...AVG_NEIGH_DEPTH <= 1.03487: 1 (2)
+                    AVG_NEIGH_DEPTH > 1.03487: 0 (5)
+
+
+Evaluation on training data (632 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    20   53( 8.4%)   0.08   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   440    18    (a): class 0
+	    35   139    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	     81%  COST_MSM
+	     35%  COST_2Nx2N
+	     32%  CTX_SPLIT
+	     11%  RATIO_2Nx2N-MSM
+	      8%  COLOC_SPLIT
+	      6%  FME
+	      3%  BEST_COST
+	      1%  AVG_NEIGH_DEPTH
+
+
+Time: 0.0 secs

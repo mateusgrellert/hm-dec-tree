@@ -69,8 +69,6 @@ extra_opt1 = '--DecisionTree=0'
 extra_opt2 = ['--DecisionTree=1',
 			  '--DecisionTree=1 --Boosting=1'
 			  ]
-extra_opt2 = ['--DecisionTree=1',
-			  ]
 
 system('mkdir -p OUTPUT')
 

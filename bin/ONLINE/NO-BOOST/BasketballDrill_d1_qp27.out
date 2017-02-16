@@ -1,0 +1,97 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 11:14:43 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/BasketballDrill_d1_qp27'
+
+Read 964 cases (28 attributes) from ./ONLINE/NO-BOOST/BasketballDrill_d1_qp27.data
+
+Decision tree:
+
+COST_MSM <= 15495.6:
+:...TU_DEPTH = 0: 0 (349/18)
+:   TU_DEPTH = 2: 1 (1)
+:   TU_DEPTH = 1:
+:   :...BITS > 113: 1 (8)
+:       BITS <= 113:
+:       :...MV_MOD_INT <= 2.23607: 0 (13/3)
+:           MV_MOD_INT > 2.23607: 1 (2)
+COST_MSM > 15495.6:
+:...BITS > 53: 1 (333/23)
+    BITS <= 53:
+    :...SSE > 53737: 1 (14)
+        SSE <= 53737:
+        :...TU_DEPTH in {1,2}: 1 (15/2)
+            TU_DEPTH = 0:
+            :...PRED_MODE = 3: 0 (0)
+                PRED_MODE in {0,2}: 0 (70/12)
+                PRED_MODE = 1:
+                :...COST_2Nx2N > 56505.1: 1 (16/1)
+                    COST_2Nx2N <= 56505.1:
+                    :...dQP = 2: 0 (0)
+                        dQP in {1,3}: 1 (28/10)
+                        dQP = 4:
+                        :...MVD_MOD_FRAC = 1.06066: 0 (0)
+                            MVD_MOD_FRAC in {0.353553,0.559017,0.707107,0.75,
+                            :                0.901388}: 0 (16/3)
+                            MVD_MOD_FRAC = 0.5: 1 (2)
+                            MVD_MOD_FRAC = 0.790569:
+                            :...SAD <= 3773: 1 (2)
+                            :   SAD > 3773: 0 (2)
+                            MVD_MOD_FRAC = 0.25:
+                            :...MVP_IDX = -1: 0 (0)
+                            :   MVP_IDX = 0: 0 (12/2)
+                            :   MVP_IDX = 1:
+                            :   :...RATIO_BEST-MSM <= 0.686688: 0 (3)
+                            :       RATIO_BEST-MSM > 0.686688: 1 (6/1)
+                            MVD_MOD_FRAC = 0:
+                            :...COLOC_SPLIT = 0: 0 (4)
+                                COLOC_SPLIT = 2:
+                                :...SSE <= 18657: 0 (15/3)
+                                :   SSE > 18657: 1 (27/7)
+                                COLOC_SPLIT = 1:
+                                :...MV_MOD_INT > 5.09902: 1 (2)
+                                    MV_MOD_INT <= 5.09902:
+                                    :...CTX_SPLIT in {0,4,6}: 0 (0)
+                                        CTX_SPLIT in {2,3,5}: 0 (13/1)
+                                        CTX_SPLIT = 1:
+                                        :...AVG_NEIGH_DEPTH <= 1.1: 0 (3)
+                                            AVG_NEIGH_DEPTH > 1.1:
+                                            :...RATIO_BEST_2Nx2N <= 0.913231: 1 (5)
+                                                RATIO_BEST_2Nx2N > 0.913231: 0 (3/1)
+
+
+Evaluation on training data (964 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    26   87( 9.0%)   0.09   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   460    44    (a): class 0
+	    43   417    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  COST_MSM
+	     64%  TU_DEPTH
+	     64%  BITS
+	     27%  SSE
+	     24%  PRED_MODE
+	     16%  COST_2Nx2N
+	     15%  dQP
+	     12%  MVD_MOD_FRAC
+	      7%  COLOC_SPLIT
+	      4%  MV_MOD_INT
+	      2%  CTX_SPLIT
+	      2%  MVP_IDX
+	      1%  AVG_NEIGH_DEPTH
+
+
+Time: 0.0 secs

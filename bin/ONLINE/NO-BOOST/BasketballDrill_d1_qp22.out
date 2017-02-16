@@ -1,0 +1,82 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Thu Feb 16 11:14:56 2017
+-------------------------------
+
+    Options:
+	Application `./ONLINE/NO-BOOST/BasketballDrill_d1_qp22'
+
+Read 1128 cases (28 attributes) from ./ONLINE/NO-BOOST/BasketballDrill_d1_qp22.data
+
+Decision tree:
+
+COST_2Nx2N > 10461.6:
+:...BITS > 94: 1 (394/10)
+:   BITS <= 94:
+:   :...SSE > 11491: 1 (73/8)
+:       SSE <= 11491:
+:       :...COLOC_SPLIT in {0,1}: 1 (10/1)
+:           COLOC_SPLIT = 2:
+:           :...MVD_MOD_FRAC in {0.353553,0.5,0.707107,0.75,
+:               :                0.790569}: 0 (0)
+:               MVD_MOD_FRAC in {0,0.901388,1.06066}: 0 (34/9)
+:               MVD_MOD_FRAC in {0.25,0.559017}: 1 (4)
+COST_2Nx2N <= 10461.6:
+:...TU_DEPTH = 0: 0 (510/44)
+    TU_DEPTH = 2:
+    :...RATIO_BEST-MSM <= 0.757534: 0 (2)
+    :   RATIO_BEST-MSM > 0.757534: 1 (26/1)
+    TU_DEPTH = 1:
+    :...BITS > 219: 1 (17)
+        BITS <= 219:
+        :...MVD_MOD_FRAC in {0.559017,0.707107,0.75,0.790569,
+            :                0.901388}: 1 (0)
+            MVD_MOD_FRAC in {0.353553,1.06066}: 0 (3)
+            MVD_MOD_FRAC = 0.5: 1 (1)
+            MVD_MOD_FRAC = 0.25:
+            :...COST_2Nx2N <= 8648.28: 0 (4)
+            :   COST_2Nx2N > 8648.28: 1 (5/1)
+            MVD_MOD_FRAC = 0:
+            :...CTX_SPLIT = 6: 1 (0)
+                CTX_SPLIT in {2,3}: 1 (16/1)
+                CTX_SPLIT = 0:
+                :...AVG_NEIGH_DEPTH <= 1.1996: 0 (3)
+                :   AVG_NEIGH_DEPTH > 1.1996: 1 (3)
+                CTX_SPLIT = 1:
+                :...BITS <= 86: 0 (4)
+                :   BITS > 86: 1 (6/1)
+                CTX_SPLIT = 4:
+                :...RATIO_2Nx2N-MSM <= 0.988066: 1 (2)
+                :   RATIO_2Nx2N-MSM > 0.988066: 0 (4)
+                CTX_SPLIT = 5:
+                :...FME in {0,1}: 1 (4/1)
+                    FME = 2: 0 (3)
+
+
+Evaluation on training data (1128 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    22   77( 6.8%)   0.07   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   514    24    (a): class 0
+	    53   537    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  COST_2Nx2N
+	     54%  TU_DEPTH
+	     52%  BITS
+	     11%  SSE
+	      9%  MVD_MOD_FRAC
+	      4%  COLOC_SPLIT
+	      4%  CTX_SPLIT
+	      2%  RATIO_BEST-MSM
+
+
+Time: 0.0 secs

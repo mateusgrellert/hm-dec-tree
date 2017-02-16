@@ -34,6 +34,7 @@ public:
     static double cost_2Nx2N, cost_MSM, SAD, SSE, neighDepth;
     static std::string dataRec;
     static std::string sequence;
+    static std::string trainPath[3], testPath[3], outPath[3];
     static FILE *trainFile[3],*testFile[3];
     
     static std::vector<std::string > cuOrderMap; 
