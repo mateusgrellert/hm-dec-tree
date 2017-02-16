@@ -1,0 +1,13 @@
+./objects/SyntaxElementParser.r.o: \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/SyntaxElementParser.cpp \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TComRom.h \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TComBitStream.h \
+  ../../../../source/Lib/TLibDecoder/SyntaxElementParser.h
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibDecoder/SyntaxElementParser.cpp :
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TypeDef.h :
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TComRom.h :
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibDecoder/../../../../source/Lib/TLibCommon/TComBitStream.h :
+  ../../../../source/Lib/TLibDecoder/SyntaxElementParser.h :

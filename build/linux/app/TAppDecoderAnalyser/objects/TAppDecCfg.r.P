@@ -1,0 +1,21 @@
+./objects/TAppDecCfg.r.o: \
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/App/TAppDecoder/TAppDecCfg.cpp \
+  ../../../../source/App/TAppDecoder/TAppDecCfg.h \
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h \
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TypeDef.h \
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TAppCommon/program_options_lite.h \
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComChromaFormat.h \
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRectangle.h \
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/ContextTables.h \
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRom.h \
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/Debug.h
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/App/TAppDecoder/TAppDecCfg.cpp :
+  ../../../../source/App/TAppDecoder/TAppDecCfg.h :
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h :
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TypeDef.h :
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TAppCommon/program_options_lite.h :
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComChromaFormat.h :
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRectangle.h :
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/ContextTables.h :
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRom.h :
+  /Users/grellert/hm-dec-tree/build/linux/app/TAppDecoderAnalyser/../../../../source/Lib/TLibCommon/Debug.h :

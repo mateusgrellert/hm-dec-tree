@@ -803,6 +803,7 @@ Bool TAppEncCfg::parseCfg( Int argc, TChar* argv[] )
   // Coding tools
   ("AMP",                                             m_enableAMP,                                       true, "Enable asymmetric motion partitions")
   ("DecisionTree",                                             TEncDecisionTree::enabled,               false, "Enable Decision Tree for CU")
+  ("Boosting",                                           TEncDecisionTree::boosting,                    false, "Enable Boosting Decision Tree")
   ("CrossComponentPrediction",                        m_crossComponentPredictionEnabledFlag,            false, "Enable the use of cross-component prediction (not valid in V1 profiles)")
   ("ReconBasedCrossCPredictionEstimate",              m_reconBasedCrossCPredictionEstimate,             false, "When determining the alpha value for cross-component prediction, use the decoded residual rather than the pre-transform encoder-side residual")
   ("SaoLumaOffsetBitShift",                           saoOffsetBitShift[CHANNEL_TYPE_LUMA],                 0, "Specify the luma SAO bit-shift. If negative, automatically calculate a suitable value based upon bit depth and initial QP")
@@ -1076,6 +1077,11 @@ Bool TAppEncCfg::parseCfg( Int argc, TChar* argv[] )
   /*
    * Set any derived parameters
    */
+    TEncDecisionTree::QP = (int) m_fQP;
+    std::size_t beg = m_inputFileName.find_last_of("/");
+    std::size_t end = m_inputFileName.find_first_of("_");
+    TEncDecisionTree::sequence = m_inputFileName.substr(beg+1,end-beg-1);
+
     if(TEncDecisionTree::enabled){
         TEncDecisionTree::init();
     }

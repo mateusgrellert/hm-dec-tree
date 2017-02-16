@@ -16,7 +16,7 @@
 
 
 #define ONLINE_TRAIN 1
-#define NB_TRAINING_FRAMES 2
+#define NB_TRAINING_FRAMES 4
 #define NB_FEATURES 28
 #define WRITE_TEST 0
 
@@ -29,10 +29,11 @@ private:
     static void runC50Train();
 public:
 
-    static bool enabled, trained, encodeStarted;
-    static int encodedFrames,nonZeroCoeff, deltaQP;
+    static bool enabled, boosting, trained, encodeStarted;
+    static int encodedFrames,nonZeroCoeff, deltaQP, QP;
     static double cost_2Nx2N, cost_MSM, SAD, SSE, neighDepth;
-    static string dataRec;
+    static std::string dataRec;
+    static std::string sequence;
     static FILE *trainFile[3],*testFile[3];
     
     static std::vector<std::string > cuOrderMap; 

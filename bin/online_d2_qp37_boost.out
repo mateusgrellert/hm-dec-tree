@@ -1,0 +1,257 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Wed Feb 15 22:43:44 2017
+-------------------------------
+
+    Options:
+	Boosted classifiers
+	Application `train_d2_qp37'
+
+Read 184 cases (28 attributes) from train_d2_qp37.data
+
+-----  Trial 0:  -----
+
+Decision tree:
+
+BITS <= 47:
+:...SSE <= 57169: 0 (122/3)
+:   SSE > 57169:
+:   :...REF_IDX in {-1,1}: 0 (3)
+:       REF_IDX = 0: 1 (12/2)
+BITS > 47:
+:...BEST_COST > 38541.7: 1 (30/1)
+    BEST_COST <= 38541.7:
+    :...SAD <= 1637: 1 (7/2)
+        SAD > 1637: 0 (10/3)
+
+-----  Trial 1:  -----
+
+Decision tree:
+
+BITS <= 6: 0 (72.8/0.8)
+BITS > 6:
+:...NON-Z-COEFF > 5: 1 (12.3)
+    NON-Z-COEFF <= 5:
+    :...MVD_MOD_INT > 2.82843: 0 (22.5/3.1)
+        MVD_MOD_INT <= 2.82843:
+        :...RATIO_BEST_2Nx2N > 0.985183: 0 (8.4/0.8)
+            RATIO_BEST_2Nx2N <= 0.985183:
+            :...MVD_MOD_INT > 0: 1 (18.6/0.8)
+                MVD_MOD_INT <= 0:
+                :...TU_DEPTH = 0: 0 (34/14.7)
+                    TU_DEPTH = 1: 1 (11.6/3.1)
+                    TU_DEPTH = 2: 1 (3.8)
+
+-----  Trial 2:  -----
+
+Decision tree:
+
+BITS <= 6: 0 (59.1/2.5)
+BITS > 6:
+:...NON-Z-COEFF > 5: 1 (9.7)
+    NON-Z-COEFF <= 5:
+    :...PREDMV_MOD_INT > 21.6333: 0 (8.6)
+        PREDMV_MOD_INT <= 21.6333:
+        :...PREDMV_MOD_INT > 16.1245: 1 (9.3)
+            PREDMV_MOD_INT <= 16.1245:
+            :...PREDMV_MOD_INT > 13.1529: 0 (6.1)
+                PREDMV_MOD_INT <= 13.1529:
+                :...INTER_DIR = 0: 0 (21.5/8)
+                    INTER_DIR = 1: 1 (27.5/12.2)
+                    INTER_DIR = 2: 0 (0.6)
+                    INTER_DIR = 3: 1 (41.7/7.9)
+
+-----  Trial 3:  -----
+
+Decision tree:
+
+SAD > 1801:
+:...AVG_NEIGH_DEPTH <= 0.918605: 0 (16.6/3)
+:   AVG_NEIGH_DEPTH > 0.918605:
+:   :...RATIO_BEST_2Nx2N <= 0.80824: 0 (18.4/7)
+:       RATIO_BEST_2Nx2N > 0.80824: 1 (51.6/5.4)
+SAD <= 1801:
+:...RATIO_BEST-MSM > 0.956556: 0 (50.6/0.5)
+    RATIO_BEST-MSM <= 0.956556:
+    :...RATIO_2Nx2N-MSM > 1.24391: 1 (5.1)
+        RATIO_2Nx2N-MSM <= 1.24391:
+        :...FME = 0: 0 (14.8/4.5)
+            FME = 1: 1 (3.9/0.5)
+            FME = 2: 0 (22.9/3.9)
+
+-----  Trial 4:  -----
+
+Decision tree:
+
+RATIO_2Nx2N-MSM > 1.56548: 0 (19)
+RATIO_2Nx2N-MSM <= 1.56548:
+:...SSE > 89475: 1 (17.1)
+    SSE <= 89475:
+    :...NON-Z-COEFF > 7: 1 (19/2.7)
+        NON-Z-COEFF <= 7:
+        :...AVG_NEIGH_DEPTH <= 0.918605: 0 (11.9)
+            AVG_NEIGH_DEPTH > 0.918605:
+            :...BITS > 93: 1 (18)
+                BITS <= 93:
+                :...RATIO_BEST_2Nx2N > 0.965319: 0 (18.2)
+                    RATIO_BEST_2Nx2N <= 0.965319:
+                    :...MVD_MOD_INT > 2.23607: 0 (7.3)
+                        MVD_MOD_INT <= 2.23607:
+                        :...BITS <= 6: 0 (11.4)
+                            BITS > 6:
+                            :...AVG_NEIGH_DEPTH <= 1.22792: 1 (13.9)
+                                AVG_NEIGH_DEPTH > 1.22792:
+                                :...COLOC_SPLIT = 2: 0 (0)
+                                    COLOC_SPLIT = 1: 0 (7.5/0.4)
+                                    COLOC_SPLIT = 0:
+                                    :...SSE <= 26092: 1 (31.7/8.8)
+                                        SSE > 26092: 0 (8.9)
+
+-----  Trial 5:  -----
+
+Decision tree:
+
+COST_MSM <= 37640:
+:...BITS <= 55: 0 (78/4.9)
+:   BITS > 55: 1 (8.5/3.2)
+COST_MSM > 37640:
+:...SAD > 3550: 1 (10.9)
+    SAD <= 3550:
+    :...AVG_NEIGH_DEPTH <= 0.918605: 0 (10.3/1.7)
+        AVG_NEIGH_DEPTH > 0.918605:
+        :...BITS > 67: 1 (18)
+            BITS <= 67:
+            :...RATIO_BEST_2Nx2N > 0.965886: 0 (6.6)
+                RATIO_BEST_2Nx2N <= 0.965886:
+                :...MV_MOD_INT <= 7: 1 (45.9/15.5)
+                    MV_MOD_INT > 7: 0 (5.8)
+
+-----  Trial 6:  -----
+
+Decision tree:
+
+SSE > 89475: 1 (10.4)
+SSE <= 89475:
+:...BITS > 93: 1 (15.2/2.3)
+    BITS <= 93:
+    :...PU_SIZE = 0: 0 (93.8/9.3)
+        PU_SIZE = 1: 1 (17.7/5.8)
+        PU_SIZE = 2: 0 (34/12)
+        PU_SIZE = 4: 0 (2.6)
+        PU_SIZE = 5: 1 (3.7)
+        PU_SIZE = 6: 1 (2.2/0.8)
+        PU_SIZE = 7: 0 (4.4/1.9)
+
+-----  Trial 7:  -----
+
+Decision tree:
+
+COST_2Nx2N > 157079: 1 (9.7)
+COST_2Nx2N <= 157079:
+:...BITS <= 6: 0 (33.9)
+    BITS > 6:
+    :...NON-Z-COEFF > 5: 1 (13.7)
+        NON-Z-COEFF <= 5:
+        :...COST_MSM <= 37640:
+            :...RATIO_2Nx2N-MSM > 1.27735: 1 (4.1)
+            :   RATIO_2Nx2N-MSM <= 1.27735:
+            :   :...AVG_NEIGH_DEPTH <= 1.09298: 1 (3.2/0.2)
+            :       AVG_NEIGH_DEPTH > 1.09298: 0 (40.4/1.1)
+            COST_MSM > 37640:
+            :...NON-Z-COEFF > 3: 0 (7.7/0.2)
+                NON-Z-COEFF <= 3:
+                :...NON-Z-COEFF > 1: 1 (29.7/3.3)
+                    NON-Z-COEFF <= 1:
+                    :...COST_MSM <= 41347.6: 1 (7.9)
+                        COST_MSM > 41347.6: 0 (33.8/9.5)
+
+-----  Trial 8:  -----
+
+Decision tree:
+
+BITS > 59:
+:...AVG_NEIGH_DEPTH <= 0.743: 0 (3)
+:   AVG_NEIGH_DEPTH > 0.743:
+:   :...DISTORTION <= 20318: 0 (10.6/4.7)
+:       DISTORTION > 20318: 1 (43.1)
+BITS <= 59:
+:...SSE > 89475: 1 (9)
+    SSE <= 89475:
+    :...RATIO_BEST_2Nx2N > 0.940184: 0 (24.7)
+        RATIO_BEST_2Nx2N <= 0.940184:
+        :...COST_2Nx2N > 142460: 1 (5.8)
+            COST_2Nx2N <= 142460:
+            :...RATIO_BEST-MSM > 0.956556: 0 (32.1)
+                RATIO_BEST-MSM <= 0.956556:
+                :...AVG_NEIGH_DEPTH <= 1.32341: 1 (14.2)
+                    AVG_NEIGH_DEPTH > 1.32341:
+                    :...RATIO_BEST-MSM <= 0.927198: 0 (35.2/6.3)
+                        RATIO_BEST-MSM > 0.927198: 1 (6.3)
+
+-----  Trial 9:  -----
+
+Decision tree:
+
+BITS <= 47:
+:...SAD <= 3226: 0 (66/12.6)
+:   SAD > 3226: 1 (12.9/2.2)
+BITS > 47:
+:...COLOC_SPLIT = 2: 1 (0)
+    COLOC_SPLIT = 1: 1 (43.2/0.5)
+    COLOC_SPLIT = 0:
+    :...RATIO_2Nx2N-MSM <= 0.810252: 0 (7.1/0.1)
+        RATIO_2Nx2N-MSM > 0.810252:
+        :...RATIO_BEST_2Nx2N <= 0.682032: 0 (4.5)
+            RATIO_BEST_2Nx2N > 0.682032: 1 (50.3/4.9)
+
+
+Evaluation on training data (184 cases):
+
+Trial	       Decision Tree       
+-----	  -----------------------  
+	  Size      Errors   Cost  
+
+   0	     6   11( 6.0%)   0.06
+   1	     8   20(10.9%)   0.11
+   2	     9   28(15.2%)   0.15
+   3	     8   19(10.3%)   0.10
+   4	    12   13( 7.1%)   0.07
+   5	     8   17( 9.2%)   0.09
+   6	     9   18( 9.8%)   0.10
+   7	    10   19(10.3%)   0.10
+   8	    10    5( 2.7%)   0.03
+   9	     6   12( 6.5%)   0.07
+boost	          0( 0.0%)   0.00   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   134          (a): class 0
+	          50    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	    100%  SAD
+	    100%  SSE
+	    100%  COST_2Nx2N
+	    100%  COST_MSM
+	    100%  RATIO_2Nx2N-MSM
+	     98%  RATIO_BEST_2Nx2N
+	     83%  PU_SIZE
+	     78%  RATIO_BEST-MSM
+	     77%  AVG_NEIGH_DEPTH
+	     73%  NON-Z-COEFF
+	     61%  MVD_MOD_INT
+	     45%  PREDMV_MOD_INT
+	     37%  INTER_DIR
+	     35%  COLOC_SPLIT
+	     26%  BEST_COST
+	     24%  TU_DEPTH
+	     19%  DISTORTION
+	     18%  FME
+	     16%  MV_MOD_INT
+	      8%  REF_IDX
+
+
+Time: 0.0 secs

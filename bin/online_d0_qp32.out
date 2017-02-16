@@ -1,0 +1,42 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Wed Feb 15 23:56:43 2017
+-------------------------------
+
+    Options:
+	Application `train_d0_qp32'
+
+Read 455 cases (28 attributes) from train_d0_qp32.data
+
+Decision tree:
+
+BITS > 43: 1 (301/3)
+BITS <= 43:
+:...COST_2Nx2N <= 332377: 0 (128/27)
+    COST_2Nx2N > 332377:
+    :...RATIO_BEST-MSM <= 0.890802: 1 (21)
+        RATIO_BEST-MSM > 0.890802: 0 (5/1)
+
+
+Evaluation on training data (455 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	     4   31( 6.8%)   0.07   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   105     3    (a): class 0
+	    28   319    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	     34%  COST_2Nx2N
+	      6%  RATIO_BEST-MSM
+
+
+Time: 0.0 secs

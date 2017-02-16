@@ -15,12 +15,15 @@ double TEncDecisionTree::cost_MSM;
 double TEncDecisionTree::neighDepth;
 int TEncDecisionTree::nonZeroCoeff;
 int TEncDecisionTree::deltaQP;
+int TEncDecisionTree::QP;
 int TEncDecisionTree::encodedFrames;
 bool TEncDecisionTree::enabled;
+bool TEncDecisionTree::boosting;
 bool TEncDecisionTree::trained;
 bool TEncDecisionTree::encodeStarted;
 double TEncDecisionTree::SAD;
 double TEncDecisionTree::SSE;
+std::string TEncDecisionTree::sequence;
 string TEncDecisionTree::dataRec;
 FILE* TEncDecisionTree::trainFile[3];
 FILE* TEncDecisionTree::testFile[3];
@@ -29,6 +32,7 @@ std::map<std::string, std::string > TEncDecisionTree::statsMap;
 std::vector<std::string > TEncDecisionTree::cuOrderMap; 
 
 void TEncDecisionTree::init(){
+    int d;
 
     dataRec = string();
 #if !ONLINE_TRAIN
@@ -39,14 +43,23 @@ void TEncDecisionTree::init(){
 #endif
     trained = false;
     encodeStarted = false;
-    testFile[0] = fopen("test_vectors_d0.data","w");
-    testFile[1] = fopen("test_vectors_d1.data","w");
-    testFile[2] = fopen("test_vectors_d2.data","w");
+    
+    
+    for(d = 0; d <= 2; d++){
+            std::stringstream sstr_tr;
+
 #if ONLINE_TRAIN
-    trainFile[0] = fopen("train_d0.data","w");
-    trainFile[1] = fopen("train_d1.data","w");
-    trainFile[2] = fopen("train_d2.data","w");
+        sstr_tr << "online_" << sequence << "_d" << d << "_qp" << QP << ".data";
+        trainFile[d] = fopen(sstr_tr.str().c_str(), "w");
 #endif
+#if WRITE_TEST
+                    std::stringstream sstr_tr;
+
+        sstr_te << "test_d" << d << "_qp" << QP << ".data";
+        testFile[d] = fopen(sstr_te.str().c_str(), "w");
+#endif
+    }
+
 }
 
 void TEncDecisionTree::getSADSSE( TComYuv *pcYuvSrc0, TComYuv *pcYuvSrc1,int width){
@@ -326,7 +339,7 @@ double TEncDecisionTree::getFeatureValue(TComDataCU *&cu, int feat_idx){
         case 25: feat_val = fme; break;
         case 26: feat_val = colocSplit; break;
         case 27: feat_val = ctxSplit; break;
-        case 28: feat_val = getAverageNeighborDepth(cu); break;
+        case 28: feat_val = neighDepth; break;
 
         default: fprintf(stderr,"Error! Feature IDX %d not supported\n", feat_idx); exit(1) ;
     }
@@ -337,27 +350,16 @@ void TEncDecisionTree::readTree(){
     FILE		*F;
     int			 TotalRules=0;
    /*  Read information on attribute names, values, and classes  */
+
+    std::stringstream sstr;
+
 #if ONLINE_TRAIN
-    if(gDepth == 0){
-        FileStem = "train_d0";
-    }
-    else if (gDepth == 1){
-        FileStem = "train_d1";
-    }
-    else{
-        FileStem = "train_d2";
-    }
+    sstr << "online_" << sequence << "_d" << gDepth << "_qp" << QP;
 #else
-    if(gDepth == 0){
-        FileStem = "TRA_NEB_BDrv_PkS_PtS_BQM_BBub_RH_d0";
-    }
-    else if (gDepth == 1){
-        FileStem = "TRA_NEB_BDrv_PkS_PtS_BQM_BBub_RH_d1";
-    }
-    else{
-        FileStem = "TRA_NEB_BDrv_PkS_PtS_BQM_BBub_RH_d2";
-    }
+    sstr << "TRA_NEB_BDrv_PkS_PtS_BQM_BBub_RH_d" << gDepth;
 #endif
+    FileStem = sstr.str().c_str();
+
     if ( ! (F = GetFile(".names", "r")) ) Error(NOFILE, Fn, "");
 
     GetNames(F);
@@ -419,14 +421,14 @@ void TEncDecisionTree::readTree(){
 
 }
 
-int TEncDecisionTree::classifyCU(string dataRec, int depth){
+int TEncDecisionTree::classifyCU(string ddataRec, int depth){
     DataRec		Case;
     ClassNo		Predict;
 
     void		ShowRules(int);
 
     //while ( (Case = GetDataRec(dataRec, false)) )
-    Case = GetDataRec(dataRec, false);
+    Case = GetDataRec(ddataRec, false);
     {
 	/*  For this case, find the class predicted by See5/C5.0 model  */
 	Predict = Classify(Case, GCEnv[depth]);
@@ -463,7 +465,7 @@ string TEncDecisionTree::setCUFeatures(TComDataCU *&cu){
     
     for(i = 2; i <= NB_FEATURES; i++){
 
-        val = getFeatureValue(cu, i); // use +3 to discard features that were not considered in the models
+        val = getFeatureValue(cu, i); 
         valInt = (int) val;
         if ( (val - valInt) == 0.0 ) 
             sstr << "," << valInt;
@@ -471,9 +473,11 @@ string TEncDecisionTree::setCUFeatures(TComDataCU *&cu){
             sstr << "," << val;
 
     }
-    if(predictPhase() && WRITE_TEST){
+    if(predictPhase()){
         sstr << ",?\n";
+#if WRITE_TEST
         fprintf(testFile[cu->getDepth(0)], "%s\n", sstr.str().c_str() );
+#endif
     }
     else if (trainingPhase()){
         statsMap[cu_str] = sstr.str();
@@ -551,25 +555,26 @@ void TEncDecisionTree::writeTrainFile(){
 }
 
 void TEncDecisionTree::runC50Train(){
-    fclose(trainFile[0]);
-    fclose(trainFile[1]);
-    fclose(trainFile[2]);
-    
-    if(system("./c5.0 -b -f train_d0 -o online_d0_boost.out") == -1){
-        printf("Error training C5.0!\n");
-        exit(1);
-    }
-    if(system("./c5.0 -b -f train_d1 -o online_d1_boost.out") == -1){
-        printf("Error training C5.0!\n");
-        exit(1);
-    }
-    if(system("./c5.0 -b -f train_d2 -o online_d2_boost.out") == -1){
-        printf("Error training C5.0!\n");
-        exit(1);
-    }    
-    
     int d;
+
+    std::stringstream sstr;
+    
     for (d = 0 ; d <= 2; d++){
+        sstr.str("");
+        fclose(trainFile[d]);
+        sstr << "./c5.0 ";
+        if(boosting){
+            sstr << "-b -f online_" << sequence << "_d" << d << "_qp" << QP <<  " -o online_" << sequence << "_d" << d << "_qp" << QP << "_boost.out";
+        }
+        else{
+            sstr << "-f online_" << sequence << "_d" << d <<    "_qp" << QP <<  " -o online_" << sequence << "_d" << d << "_qp" << QP  << ".out";
+        }
+        printf("%s\n",sstr.str().c_str());
+        
+        if(system(sstr.str().c_str()) == -1){
+            printf("Error training C5.0!\n");
+            exit(1);
+        }  
         gDepth = d;
         readTree();
     }

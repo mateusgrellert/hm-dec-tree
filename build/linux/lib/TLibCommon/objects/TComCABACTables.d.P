@@ -1,0 +1,11 @@
+./objects/TComCABACTables.d.o: \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComCABACTables.cpp \
+  ../../../../source/Lib/TLibCommon/TComCABACTables.h \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h \
+  ../../../../source/Lib/TLibCommon/TypeDef.h \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.h
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComCABACTables.cpp :
+  ../../../../source/Lib/TLibCommon/TComCABACTables.h :
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h :
+  ../../../../source/Lib/TLibCommon/TypeDef.h :
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.h :

@@ -1,0 +1,13 @@
+./objects/SyntaxElementWriter.d.o: \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/SyntaxElementWriter.cpp \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TypeDef.h \
+  ../../../../source/Lib/TLibEncoder/SyntaxElementWriter.h \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComBitStream.h \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComRom.h
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/SyntaxElementWriter.cpp :
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TypeDef.h :
+  ../../../../source/Lib/TLibEncoder/SyntaxElementWriter.h :
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComBitStream.h :
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComRom.h :

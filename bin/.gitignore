@@ -2,4 +2,6 @@
 TAppEncoderStatic
 OUTPUT/*
 *.yuv
-
+compare_encoders.py
+TAppEncoder*
+TAppDecoder*

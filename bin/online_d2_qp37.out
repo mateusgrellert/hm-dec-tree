@@ -1,0 +1,175 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Wed Feb 15 23:58:49 2017
+-------------------------------
+
+    Options:
+	Application `train_d2_qp37'
+
+Read 2076 cases (28 attributes) from train_d2_qp37.data
+
+Decision tree:
+
+BITS <= 41:
+:...BEST_COST <= 74237.9: 0 (1209/65)
+:   BEST_COST > 74237.9:
+:   :...TU_DEPTH = 2: 1 (1)
+:       TU_DEPTH = 1:
+:       :...CTX_SPLIT in {2,4,5,6}: 1 (0)
+:       :   CTX_SPLIT = 0: 0 (6/1)
+:       :   CTX_SPLIT = 3: 1 (3)
+:       :   CTX_SPLIT = 1:
+:       :   :...RATIO_BEST_2Nx2N <= 0.933515: 1 (4)
+:       :       RATIO_BEST_2Nx2N > 0.933515: 0 (2)
+:       TU_DEPTH = 0:
+:       :...PU_SIZE = 4: 0 (4/1)
+:           PU_SIZE = 1:
+:           :...RATIO_BEST_2Nx2N <= 0.917617: 1 (13)
+:           :   RATIO_BEST_2Nx2N > 0.917617: 0 (4)
+:           PU_SIZE = 2:
+:           :...COST_MSM <= 206551: 0 (39/11)
+:           :   COST_MSM > 206551: 1 (7/2)
+:           PU_SIZE = 5:
+:           :...RATIO_BEST-MSM <= 0.87124: 0 (6)
+:           :   RATIO_BEST-MSM > 0.87124: 1 (2)
+:           PU_SIZE = 7:
+:           :...PRED_MODE in {0,3}: 0 (0)
+:           :   PRED_MODE = 1: 0 (17/2)
+:           :   PRED_MODE = 2: 1 (2)
+:           PU_SIZE = 6:
+:           :...FME = 2: 0 (14)
+:           :   FME = 1:
+:           :   :...DISTORTION <= 84418: 1 (2)
+:           :   :   DISTORTION > 84418: 0 (2)
+:           :   FME = 0:
+:           :   :...dQP in {1,2}: 0 (0)
+:           :       dQP = 4: 0 (5)
+:           :       dQP = 3:
+:           :       :...RATIO_BEST-MSM <= 0.846566: 1 (3)
+:           :           RATIO_BEST-MSM > 0.846566: 0 (2)
+:           PU_SIZE = 0:
+:           :...REF_IDX = -1: 0 (34/4)
+:               REF_IDX = 1:
+:               :...INTER_DIR in {0,2}: 1 (0)
+:               :   INTER_DIR = 1: 0 (2)
+:               :   INTER_DIR = 3: 1 (3)
+:               REF_IDX = 0:
+:               :...MVP_IDX in {0,1}: 0 (20/3)
+:                   MVP_IDX = -1:
+:                   :...CTX_SPLIT = 6: 0 (0)
+:                       CTX_SPLIT in {1,4}: 0 (35/7)
+:                       CTX_SPLIT = 5: 1 (1)
+:                       CTX_SPLIT = 0:
+:                       :...SAD <= 2991: 1 (7/1)
+:                       :   SAD > 2991: 0 (12/1)
+:                       CTX_SPLIT = 2:
+:                       :...BITS <= 4: 0 (14/1)
+:                       :   BITS > 4: 1 (3)
+:                       CTX_SPLIT = 3:
+:                       :...DISTORTION <= 105430: 0 (6)
+:                           DISTORTION > 105430: 1 (4)
+BITS > 41:
+:...BITS > 90:
+    :...NON-Z-COEFF <= 18: 1 (254/44)
+    :   NON-Z-COEFF > 18:
+    :   :...DISTORTION <= 39452: 1 (9/1)
+    :       DISTORTION > 39452:
+    :       :...NON-Z-COEFF <= 37: 0 (14/2)
+    :           NON-Z-COEFF > 37: 1 (5/1)
+    BITS <= 90:
+    :...MVD_MOD_FRAC = 0.25: 1 (9/2)
+        MVD_MOD_FRAC in {0.5,0.559017,0.75}: 0 (30/9)
+        MVD_MOD_FRAC = 0.353553:
+        :...RATIO_BEST_2Nx2N <= 0.865669: 1 (3)
+        :   RATIO_BEST_2Nx2N > 0.865669: 0 (3)
+        MVD_MOD_FRAC = 0.707107:
+        :...MVD_MOD_INT <= 2.82843: 1 (3)
+        :   MVD_MOD_INT > 2.82843: 0 (4)
+        MVD_MOD_FRAC = 1.06066:
+        :...RATIO_BEST_2Nx2N <= 1.00624: 0 (7)
+        :   RATIO_BEST_2Nx2N > 1.00624: 1 (2)
+        MVD_MOD_FRAC = 0.790569:
+        :...MVP_IDX = -1: 0 (0)
+        :   MVP_IDX = 0: 0 (8)
+        :   MVP_IDX = 1:
+        :   :...DISTORTION <= 18963: 0 (2)
+        :       DISTORTION > 18963: 1 (3)
+        MVD_MOD_FRAC = 0.901388:
+        :...CTX_SPLIT in {4,5,6}: 1 (0)
+        :   CTX_SPLIT in {0,1}: 1 (3)
+        :   CTX_SPLIT = 2: 0 (2)
+        :   CTX_SPLIT = 3:
+        :   :...DISTORTION <= 24796: 0 (2)
+        :       DISTORTION > 24796: 1 (2)
+        MVD_MOD_FRAC = 0:
+        :...MV_MOD_FRAC in {0.353553,0.5,0.707107,0.790569,
+            :               1.06066}: 1 (29/7)
+            MV_MOD_FRAC = 0.901388: 0 (11/5)
+            MV_MOD_FRAC = 0.25:
+            :...TU_DEPTH = 0: 0 (4)
+            :   TU_DEPTH in {1,2}: 1 (5)
+            MV_MOD_FRAC = 0.559017:
+            :...NON-Z-COEFF <= 4: 0 (2)
+            :   NON-Z-COEFF > 4: 1 (5)
+            MV_MOD_FRAC = 0.75:
+            :...RATIO_BEST-MSM <= 0.85179: 0 (2)
+            :   RATIO_BEST-MSM > 0.85179: 1 (2)
+            MV_MOD_FRAC = 0:
+            :...dQP = 2: 0 (0)
+                dQP = 4: 1 (6/2)
+                dQP = 3:
+                :...SSE <= 72171: 0 (5)
+                :   SSE > 72171: 1 (10/2)
+                dQP = 1:
+                :...TU_DEPTH = 0: 0 (61/24)
+                    TU_DEPTH = 2:
+                    :...SSE <= 57053: 1 (9)
+                    :   SSE > 57053:
+                    :   :...RATIO_BEST_2Nx2N <= 0.845333: 0 (8/1)
+                    :       RATIO_BEST_2Nx2N > 0.845333: 1 (3)
+                    TU_DEPTH = 1:
+                    :...NON-Z-COEFF > 4: 1 (4)
+                        NON-Z-COEFF <= 4:
+                        :...CTX_SPLIT in {5,6}: 0 (0)
+                            CTX_SPLIT in {0,4}: 1 (17/6)
+                            CTX_SPLIT in {2,3}: 0 (27/9)
+                            CTX_SPLIT = 1:
+                            :...COST_2Nx2N <= 30031.4: 1 (3)
+                                COST_2Nx2N > 30031.4: 0 (10/2)
+
+
+Evaluation on training data (2076 cases):
+
+	       Decision Tree       
+	  -----------------------  
+	  Size      Errors   Cost  
+
+	    72  216(10.4%)   0.10   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	  1487    68    (a): class 0
+	   148   373    (b): class 1
+
+
+	Attribute usage:
+
+	    100%  BITS
+	     72%  BEST_COST
+	     21%  TU_DEPTH
+	     17%  NON-Z-COEFF
+	     15%  MVD_MOD_FRAC
+	     13%  PU_SIZE
+	     11%  MV_MOD_FRAC
+	      8%  dQP
+	      8%  CTX_SPLIT
+	      7%  REF_IDX
+	      6%  MVP_IDX
+	      2%  DISTORTION
+	      2%  RATIO_BEST_2Nx2N
+	      2%  COST_MSM
+	      2%  SSE
+	      1%  FME
+
+
+Time: 0.0 secs

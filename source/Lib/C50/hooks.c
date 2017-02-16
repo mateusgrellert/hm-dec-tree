@@ -872,7 +872,7 @@ void CheckValue(DataRec DVec, Attribute Att)
                     
 //    printf("%s: %f\n",AttValName[Att],Cv);
 
-    if ( ! finite(Cv) )
+    if ( ! isfinite(Cv) )
     {
 	Error(BADNUMBER, AttName[Att], "");
 

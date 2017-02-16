@@ -1,0 +1,9 @@
+./objects/TComBitStream.r.o: \
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComBitStream.cpp \
+  ../../../../source/Lib/TLibCommon/TComBitStream.h \
+  ../../../../source/Lib/TLibCommon/CommonDef.h \
+  ../../../../source/Lib/TLibCommon/TypeDef.h
+  /Users/grellert/hm-dec-tree/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComBitStream.cpp :
+  ../../../../source/Lib/TLibCommon/TComBitStream.h :
+  ../../../../source/Lib/TLibCommon/CommonDef.h :
+  ../../../../source/Lib/TLibCommon/TypeDef.h :

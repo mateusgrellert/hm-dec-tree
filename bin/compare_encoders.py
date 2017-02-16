@@ -7,8 +7,8 @@ from os.path import isfile
 
 def runEncoder(cmd, encoder1,encoder2):
 
-	seqMap = {'FlowerVase': 'Flo','SteamLocomotiveTrain_10bit': 'StLo','SlideEditing': 'SliE', 'PeopleOnStreet': 'PoS' ,'ChinaSpeed':'Chin','RaceHorsesC':'RHC', 'BQSquare': 'BQS','BQMall':'BQM','BasketballDrill' : 'BDril','BasketballDrive':'BDrv','BQTerrace':'BQT',
-			  'PartyScene':'PtS','ParkScene':'PkS','Cactus':'CAC','Kimono':'KIM', 'BasketballPass' : 'BPas'}
+	seqMap = {'NebutaFestival_10bit': 'Neb','FlowerVase': 'Flo','SteamLocomotiveTrain_10bit': 'StLo','SlideEditing': 'SliE', 'PeopleOnStreet': 'PoS' ,'ChinaSpeed':'Chin','RaceHorsesC':'RHC', 'BQSquare': 'BQS','BQMall':'BQM','BasketballDrill' : 'BDril','BasketballDrive':'BDrv','BQTerrace':'BQT',
+			  'PartyScene':'PtS','ParkScene':'PkS','Cactus':'CAC','Kimono':'KIM', 'BasketballPass' : 'BPas', 'Johnny': 'Jon'}
 
 	re_bitrate = '%d\s*a\s*(\d+.\d+)\s*' % (num_frames)
 	re_psnr = '%d\s*a\s*\d+.\d+\s*(\d+.\d+)\s*(\d+.\d+)\s*(\d+.\d+)\s*(\d+.\d+)\s*' % (num_frames)
@@ -20,10 +20,10 @@ def runEncoder(cmd, encoder1,encoder2):
 	else:
 		encoder = encoder2
 	
-	print 'Running: ', cmd
+	#print 'Running: ', cmd
 
 	cfg = 'RA' if 'randomaccess' in cmd else 'LB'
-	seq = seqMap[cmd.split('~/hm-cfgs/')[1].split()[0][:-4]]
+	seq = seqMap[cmd.split('~/hm-cfgs/cropped/')[1].split()[0][:-4]]
 	qpstr = cmd.split(' -q ')[1].split()[0]
 	fr = cmd.split(' -f ')[1].split()[0]
 	extra_opt = cmd.split(' -f')[1].split()[1:]
@@ -42,7 +42,7 @@ def runEncoder(cmd, encoder1,encoder2):
 		fout.write(output)
 		fout.close()
 	else:
-		print 'Running',outf_path
+		#print 'Running',outf_path
 		output = open(outf_path,'r').read()
 	# ./hm-fast-fme-v1 -c ../cfg/encoder_randomaccess_main.cfg -c ~/hm-cfgs/BasketballDrill.cfg -q 37 -f 30
 
@@ -66,9 +66,11 @@ gop_struct = 'encoder_randomaccess_main'
 
 
 extra_opt1 = '--DecisionTree=0'
-extra_opt2 = ['--DecisionTree=1'
+extra_opt2 = ['--DecisionTree=1',
+			  '--DecisionTree=1 --Boosting=1'
 			  ]
-
+extra_opt2 = ['--DecisionTree=1',
+			  ]
 
 system('mkdir -p OUTPUT')
 
@@ -77,12 +79,12 @@ for encoder2 in test_encoders:
 		for extra_opt in extra_opt2:
 			cmds = []
 			for qp in qps:
-				base_opt = '-c ../cfg/%s.cfg -c ~/hm-cfgs/%s.cfg -q %d -f %d' % (gop_struct, seq, qp, num_frames)
+				base_opt = '-c ../cfg/%s.cfg -c ~/hm-cfgs/cropped/%s.cfg -q %d -f %d' % (gop_struct, seq, qp, num_frames)
 				cmd1 = './%s %s %s' % (encoder1, base_opt, extra_opt1)
 				cmds.append(cmd1)
 
 			for qp in qps:
-				base_opt = '-c ../cfg/%s.cfg -c ~/hm-cfgs/%s.cfg -q %d -f %d' % (gop_struct, seq, qp, num_frames)
+				base_opt = '-c ../cfg/%s.cfg -c ~/hm-cfgs/cropped/%s.cfg -q %d -f %d' % (gop_struct, seq, qp, num_frames)
 				cmd2 = './%s %s %s' % (encoder2, base_opt, extra_opt)
 				cmds.append(cmd2)
 
